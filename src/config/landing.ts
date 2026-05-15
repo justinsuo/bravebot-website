@@ -38,6 +38,22 @@ export const landing = {
     ],
   },
 
+  /* ---- 1b · exploded-model scroll captions ----------------------- */
+  experience: {
+    // Short captions that fade in as the robot comes apart on scroll.
+    captions: [
+      {
+        title: "A modified LimX TRON 1 platform.",
+        body: "Wheel-legged mobility — wheels for efficient aisle coverage, articulated legs for steps, grating and slopes.",
+      },
+      {
+        title: "Built around a four-sensor mast and an edge-AI core.",
+        body: "Acoustic, thermal, gas and visual sensing — fused and reasoned over entirely on-board.",
+      },
+    ],
+    note: "Concept visualization — exploded view of the BraveBot platform.",
+  },
+
   /* ---- 2 · scroll story (pinned, 4 states) ----------------------- */
   story: {
     heading: "One patrol. Four ways to catch a failure.",

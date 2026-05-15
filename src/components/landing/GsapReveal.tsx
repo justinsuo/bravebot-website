@@ -15,8 +15,8 @@ export function GsapReveal({
   children,
   className = "",
   delay = 0,
-  y = 46,
-  start = "top 86%",
+  y = 16,
+  start = "top 88%",
 }: {
   children: ReactNode;
   className?: string;
@@ -42,9 +42,9 @@ export function GsapReveal({
       {
         opacity: 1,
         y: 0,
-        duration: 0.9,
+        duration: 0.6,
         delay,
-        ease: "power3.out",
+        ease: "power2.out",
         scrollTrigger: { trigger: el, start, once: true },
       },
     );
