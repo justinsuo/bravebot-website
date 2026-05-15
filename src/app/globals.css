@@ -1,26 +1,157 @@
 @import "tailwindcss";
 
+/* ===== BraveBot / Vigiles Robotics design system ===== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #05070d;
+  --foreground: #e6ecf5;
+
+  /* Data center palette */
+  --void: #05070d;
+  --abyss: #080c16;
+  --panel: #0c1322;
+  --panel-2: #111a2e;
+  --line: #1d2c47;
+  --line-soft: #16223a;
+
+  /* Cyan / blue */
+  --cyan: #38d6ef;
+  --cyan-bright: #6ff0ff;
+  --blue: #2f6bd6;
+  --blue-deep: #14305f;
+
+  /* Vigiles orange accents */
+  --orange: #ff6a1a;
+  --orange-bright: #ff9148;
+
+  --text: #e6ecf5;
+  --text-dim: #9fb0c8;
+  --text-faint: #65758f;
+
+  --ok: #4ade80;
+  --warn: #fbbf24;
+  --crit: #f0533a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  --color-void: var(--void);
+  --color-abyss: var(--abyss);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+
+  --color-cyan: var(--cyan);
+  --color-cyan-bright: var(--cyan-bright);
+  --color-blue: var(--blue);
+  --color-blue-deep: var(--blue-deep);
+  --color-orange: var(--orange);
+  --color-orange-bright: var(--orange-bright);
+
+  --color-tdim: var(--text-dim);
+  --color-tfaint: var(--text-faint);
+
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-crit: var(--crit);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Ambient tech grid */
+.bg-techgrid {
+  background-image:
+    linear-gradient(rgba(56, 214, 239, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 214, 239, 0.045) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+
+.glow-cyan {
+  box-shadow: 0 0 0 1px rgba(56, 214, 239, 0.25), 0 0 38px -8px rgba(56, 214, 239, 0.45);
+}
+.glow-orange {
+  box-shadow: 0 0 0 1px rgba(255, 106, 26, 0.35), 0 0 34px -8px rgba(255, 106, 26, 0.5);
+}
+
+.glass {
+  background: linear-gradient(160deg, rgba(17, 26, 46, 0.86), rgba(8, 12, 22, 0.78));
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--line);
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, #ffffff 8%, var(--cyan-bright) 52%, var(--orange-bright) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hairline {
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--abyss); }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+/* Focus visibility for accessibility */
+:focus-visible {
+  outline: 2px solid var(--cyan-bright);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Animations */
+@keyframes pulse-ring {
+  0% { transform: scale(0.7); opacity: 0.85; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+@keyframes sweep {
+  0% { transform: translateX(-130%); }
+  100% { transform: translateX(130%); }
+}
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+@keyframes dash-flow {
+  to { stroke-dashoffset: -240; }
+}
+
+.anim-float { animation: float-y 7s ease-in-out infinite; }
+.anim-blink { animation: blink 1.7s ease-in-out infinite; }
+.anim-spin-slow { animation: spin-slow 22s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
