@@ -91,7 +91,9 @@ export function Experience() {
       end: "bottom bottom",
       onUpdate: (self) => {
         const p = self.progress;
-        progressRef.current = p;
+        // Explode finishes at ~82% so the last stretch of scroll dwells on
+        // the fully exploded model before the scene transitions out.
+        progressRef.current = Math.min(1, p / 0.82);
 
         // hero copy hands off early
         if (heroRef.current) {
@@ -134,7 +136,7 @@ export function Experience() {
 
   /* ---- pinned exploded-view experience ---------------------------- */
   return (
-    <section ref={sectionRef} className="relative h-[320vh] bg-void">
+    <section ref={sectionRef} className="relative h-[460vh] bg-void">
       <div
         ref={sceneRef}
         className="sticky top-0 flex h-screen items-center justify-center overflow-hidden"

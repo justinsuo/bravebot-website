@@ -54,6 +54,38 @@ export const landing = {
     note: "Concept visualization — exploded view of the BraveBot platform.",
   },
 
+  /* ---- 1c · interactive 3D hotspots ------------------------------ */
+  // Each hotspot maps to one or more part ids in RobotScene.
+  robotHotspots: [
+    { id: "wheel", n: 1, parts: ["wheelL", "wheelR"], title: "Wheel-foot module", body: "Efficient rolling mobility — the wheeled TRON 1 mode for covering long inspection aisles with low energy cost." },
+    { id: "legs", n: 2, parts: ["hipL", "hipR"], title: "Articulated leg links", body: "Adaptive stance and balance — the links adjust footprint and height for slopes, steps and uneven floors." },
+    { id: "abad", n: 3, parts: ["abadL", "abadR"], title: "Hip actuator housing", body: "Drives leg control and the wheel-legged movement that switches between rolling and stepping." },
+    { id: "knee", n: 4, parts: ["kneeL", "kneeR"], title: "Knee actuator housing", body: "The mechanical articulation joint — bends the leg to clear obstacles and absorb terrain." },
+    { id: "base", n: 5, parts: ["base"], title: "Lower pelvis / locomotion base", body: "The LimX TRON 1 base platform — the proven wheel-legged locomotion core BraveBot is built on." },
+    { id: "payload", n: 6, parts: ["payload"], title: "Payload adapter frame", body: "The custom BraveBot mounting layer — a structural interface built on top of the TRON 1 base." },
+    { id: "torso", n: 7, parts: ["torso"], title: "Rugged inspection torso", body: "A sealed IP66 industrial enclosure housing the inspection electronics and edge compute." },
+    { id: "rails", n: 8, parts: ["railL", "railR"], title: "Orange protective rail cage", body: "Impact protection for the torso and a handling point for field deployment and transport." },
+    { id: "display", n: 9, parts: ["display"], title: "Front AI display panel", body: "Local status and operator feedback — patrol mode, diagnostics and at-a-glance robot state." },
+    { id: "mast", n: 10, parts: ["mast"], title: "Sensor mast", body: "Raises the sensor head for an elevated vantage point over racks, aisles and equipment." },
+    { id: "acoustic", n: 11, parts: ["acoustic"], title: "Acoustic imaging array", body: "Detects ultrasonic leaks, partial discharge, electrical arcing and bearing wear." },
+    { id: "thermal", n: 12, parts: ["thermal"], title: "Thermal camera", body: "Maps hotspots across UPS, PDU, cable joints, GPUs and racks." },
+    { id: "gas", n: 13, parts: ["gas"], title: "Gas sensor module", body: "VOC / CO / H₂ for data centers, with optional OGI / TDLAS for industrial gas detection." },
+    { id: "hdcam", n: 14, parts: ["hdcam"], title: "HD visual AI camera", body: "Reads gauges, assets, doors, seals and indicator lights with on-board vision models." },
+    { id: "nav", n: 15, parts: ["nav"], title: "Navigation sensor cluster", body: "Handles mapping, obstacle avoidance and route following across the facility." },
+    { id: "edgeai", n: 16, parts: ["edgeai"], title: "Edge AI core", body: "Local multimodal reasoning — diagnosis and alert generation with no cloud dependency." },
+    { id: "battery", n: 17, parts: ["battery"], title: "Hot-swappable battery", body: "2–4 hour runtime with a ~10-second swap for continuous 24/7 operation." },
+    { id: "antenna", n: 18, parts: ["antennaL", "antennaR"], title: "Communication antennas", body: "Network sync, local operation and command / communication links." },
+    { id: "estop", n: 19, parts: ["estop"], title: "Emergency stop", body: "A hardware safety cut-off for safe operation around people and equipment." },
+    { id: "rear", n: 20, parts: ["rear"], title: "Rear service panel", body: "Tool-free maintenance access and a modular layout for serviceable components." },
+  ],
+
+  /* ---- 1d · interactive explorer section copy -------------------- */
+  explorer: {
+    heading: "Explore every part of the robot.",
+    intro:
+      "Drag to orbit the exploded model. Click any component — or pick one from the list — to see what it does.",
+  },
+
   /* ---- 2 · scroll story (pinned, 4 states) ----------------------- */
   story: {
     heading: "From patrol to work order.",

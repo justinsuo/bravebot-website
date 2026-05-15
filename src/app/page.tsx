@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SmoothScroll } from "@/components/landing/scroll";
 import { LandingNav } from "@/components/landing/LandingNav";
 import { Experience } from "@/components/landing/Experience";
+import { RobotExplorer } from "@/components/landing/RobotExplorer";
 import { StorySection } from "@/components/landing/StorySection";
 import { FeatureGrid } from "@/components/landing/FeatureGrid";
 import { SocialProof } from "@/components/landing/SocialProof";
@@ -25,6 +26,7 @@ export default function HomePage() {
       <LandingNav />
       <main id="top">
         <Experience />
+        <RobotExplorer />
         <StorySection />
         <FeatureGrid />
         <SocialProof />
