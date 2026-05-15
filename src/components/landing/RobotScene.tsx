@@ -5,13 +5,13 @@
  *
  * Real LimX Dynamics TRON 1 (WF_TRON1A) link meshes (base, abad, hip, knee,
  * wheel) assembled per the published URDF chain, plus original BraveBot
- * modification parts (payload frame, sealed torso, sensor mast and head,
- * sensor modules, antennas, battery, edge-AI core, panels, e-stop, rails).
+ * modification parts — each modelled in detail from primitives in
+ * RobotParts.tsx (no third-party assets).
  *
  * Two modes:
  *  - scroll mode (progressRef): a scrubbed exploded-view transition.
  *  - interactive mode: a fixed exploded view with orbit controls and
- *    click-to-select parts, for the hotspot explorer.
+ *    click-to-select parts for the hotspot explorer.
  *
  * Mesh source: github.com/limxdynamics/robot-description (Apache-2.0).
  * See public/models/tron1/NOTICE.txt for attribution.
@@ -31,80 +31,51 @@ import { OrbitControls } from "@react-three/drei";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
 import * as THREE from "three";
 import { prefersReducedMotion } from "./scroll";
-
-type MatKey =
-  | "shell" | "metal" | "casing" | "frame" | "tire"
-  | "orange" | "sensor" | "lens" | "estop" | "antenna" | "core";
-
-type Shape =
-  | { kind: "stl"; file: string }
-  | { kind: "box"; box: [number, number, number] }
-  | { kind: "cyl"; cyl: [number, number, number] };
+import { partMaterial, PartGeometry, type MatKey } from "./RobotParts";
 
 interface Part {
   id: string;
-  shape: Shape;
-  mat: MatKey;
+  kind: "stl" | "mod";
+  file?: string; // stl only
+  mat?: MatKey; // stl only
   pos: [number, number, number];
   explode: [number, number, number];
-  rot?: [number, number, number];
 }
 
-const RZ: [number, number, number] = [0, 0, Math.PI / 2]; // lens facing +x
-const RX: [number, number, number] = [Math.PI / 2, 0, 0]; // upright (+z)
-
-/* Real TRON 1 links + original BraveBot modification parts. */
+/* Real TRON 1 links (URDF chain) + BraveBot modification parts. */
 const PARTS: Part[] = [
-  // --- real TRON 1 links (URDF kinematic chain) ---
-  { id: "base", shape: { kind: "stl", file: "base_Link" }, mat: "shell", pos: [0, 0, 0], explode: [0, 0, 0.16] },
-  { id: "abadL", shape: { kind: "stl", file: "abad_L_Link" }, mat: "metal", pos: [0.05556, 0.105, -0.2602], explode: [0, 0.22, 0.02] },
-  { id: "abadR", shape: { kind: "stl", file: "abad_R_Link" }, mat: "metal", pos: [0.05556, -0.105, -0.2602], explode: [0, -0.22, 0.02] },
-  { id: "hipL", shape: { kind: "stl", file: "hip_L_Link" }, mat: "metal", pos: [-0.02144, 0.1255, -0.2602], explode: [-0.05, 0.4, -0.04] },
-  { id: "hipR", shape: { kind: "stl", file: "hip_R_Link" }, mat: "metal", pos: [-0.02144, -0.1255, -0.2602], explode: [-0.05, -0.4, -0.04] },
-  { id: "kneeL", shape: { kind: "stl", file: "knee_L_Link" }, mat: "metal", pos: [-0.17144, 0.105, -0.52001], explode: [-0.2, 0.56, -0.16] },
-  { id: "kneeR", shape: { kind: "stl", file: "knee_R_Link" }, mat: "metal", pos: [-0.17144, -0.105, -0.52001], explode: [-0.2, -0.56, -0.16] },
-  { id: "wheelL", shape: { kind: "stl", file: "wheel_L_Link" }, mat: "tire", pos: [-0.02144, 0.1485, -0.77982], explode: [0.05, 0.74, -0.42] },
-  { id: "wheelR", shape: { kind: "stl", file: "wheel_R_Link" }, mat: "tire", pos: [-0.02144, -0.1485, -0.77982], explode: [0.05, -0.74, -0.42] },
-  // --- BraveBot modifications (original primitives) ---
-  { id: "payload", shape: { kind: "box", box: [0.3, 0.36, 0.05] }, mat: "frame", pos: [0.02, 0, 0.045], explode: [0, 0, 0.32] },
-  { id: "torso", shape: { kind: "box", box: [0.27, 0.3, 0.27] }, mat: "casing", pos: [0.02, 0, 0.215], explode: [-0.55, 0, 0.26] },
-  { id: "battery", shape: { kind: "box", box: [0.16, 0.24, 0.1] }, mat: "casing", pos: [0.02, 0, 0.12], explode: [0.72, 0, -0.12] },
-  { id: "edgeai", shape: { kind: "box", box: [0.13, 0.2, 0.11] }, mat: "core", pos: [-0.03, 0, 0.22], explode: [-0.98, 0, 0.16] },
-  { id: "display", shape: { kind: "box", box: [0.025, 0.2, 0.14] }, mat: "lens", pos: [0.165, 0, 0.215], explode: [0.95, 0, 0.06] },
-  { id: "rear", shape: { kind: "box", box: [0.025, 0.22, 0.2] }, mat: "casing", pos: [-0.12, 0, 0.215], explode: [-0.92, 0, 0.34] },
-  { id: "estop", shape: { kind: "cyl", cyl: [0.024, 0.024, 0.032] }, mat: "estop", pos: [-0.1, 0.11, 0.31], rot: RX, explode: [-0.45, 0.5, 0.42] },
-  { id: "mast", shape: { kind: "box", box: [0.06, 0.06, 0.17] }, mat: "metal", pos: [0.02, 0, 0.43], explode: [0, 0, 0.5] },
-  { id: "head", shape: { kind: "box", box: [0.21, 0.25, 0.14] }, mat: "shell", pos: [0.02, 0, 0.57], explode: [0, 0, 0.96] },
-  { id: "acoustic", shape: { kind: "cyl", cyl: [0.05, 0.05, 0.03] }, mat: "sensor", pos: [0.14, 0.075, 0.58], rot: RZ, explode: [0.52, 0.62, 0.5] },
-  { id: "thermal", shape: { kind: "cyl", cyl: [0.032, 0.032, 0.04] }, mat: "lens", pos: [0.145, 0, 0.6], rot: RZ, explode: [0.74, 0, 0.72] },
-  { id: "hdcam", shape: { kind: "cyl", cyl: [0.04, 0.04, 0.038] }, mat: "lens", pos: [0.145, -0.075, 0.58], rot: RZ, explode: [0.52, -0.62, 0.5] },
-  { id: "gas", shape: { kind: "box", box: [0.05, 0.07, 0.055] }, mat: "sensor", pos: [0.14, 0, 0.535], explode: [0.82, 0.32, 0.36] },
-  { id: "nav", shape: { kind: "box", box: [0.06, 0.16, 0.055] }, mat: "sensor", pos: [0.145, 0, 0.48], explode: [0.96, 0, 0.16] },
-  { id: "antennaL", shape: { kind: "cyl", cyl: [0.007, 0.007, 0.12] }, mat: "antenna", pos: [0, 0.07, 0.71], rot: RX, explode: [0, 0.34, 0.5] },
-  { id: "antennaR", shape: { kind: "cyl", cyl: [0.007, 0.007, 0.12] }, mat: "antenna", pos: [0, -0.07, 0.71], rot: RX, explode: [0, -0.34, 0.5] },
-  { id: "railL", shape: { kind: "box", box: [0.07, 0.05, 0.34] }, mat: "orange", pos: [0.03, 0.176, -0.1], explode: [0, 0.6, -0.08] },
-  { id: "railR", shape: { kind: "box", box: [0.07, 0.05, 0.34] }, mat: "orange", pos: [0.03, -0.176, -0.1], explode: [0, -0.6, -0.08] },
+  { id: "base", kind: "stl", file: "base_Link", mat: "shell", pos: [0, 0, 0], explode: [0, 0, 0.16] },
+  { id: "abadL", kind: "stl", file: "abad_L_Link", mat: "metal", pos: [0.05556, 0.105, -0.2602], explode: [0, 0.22, 0.02] },
+  { id: "abadR", kind: "stl", file: "abad_R_Link", mat: "metal", pos: [0.05556, -0.105, -0.2602], explode: [0, -0.22, 0.02] },
+  { id: "hipL", kind: "stl", file: "hip_L_Link", mat: "metal", pos: [-0.02144, 0.1255, -0.2602], explode: [-0.05, 0.4, -0.04] },
+  { id: "hipR", kind: "stl", file: "hip_R_Link", mat: "metal", pos: [-0.02144, -0.1255, -0.2602], explode: [-0.05, -0.4, -0.04] },
+  { id: "kneeL", kind: "stl", file: "knee_L_Link", mat: "metal", pos: [-0.17144, 0.105, -0.52001], explode: [-0.2, 0.56, -0.16] },
+  { id: "kneeR", kind: "stl", file: "knee_R_Link", mat: "metal", pos: [-0.17144, -0.105, -0.52001], explode: [-0.2, -0.56, -0.16] },
+  { id: "wheelL", kind: "stl", file: "wheel_L_Link", mat: "tire", pos: [-0.02144, 0.1485, -0.77982], explode: [0.05, 0.74, -0.42] },
+  { id: "wheelR", kind: "stl", file: "wheel_R_Link", mat: "tire", pos: [-0.02144, -0.1485, -0.77982], explode: [0.05, -0.74, -0.42] },
+  // --- BraveBot modifications (detailed primitives, see RobotParts.tsx) ---
+  { id: "payload", kind: "mod", pos: [0.02, 0, 0.045], explode: [0, 0, 0.32] },
+  { id: "torso", kind: "mod", pos: [0.02, 0, 0.215], explode: [-0.55, 0, 0.26] },
+  { id: "battery", kind: "mod", pos: [0.02, 0, 0.12], explode: [0.72, 0, -0.12] },
+  { id: "edgeai", kind: "mod", pos: [-0.03, 0, 0.22], explode: [-0.98, 0, 0.16] },
+  { id: "display", kind: "mod", pos: [0.165, 0, 0.215], explode: [0.95, 0, 0.06] },
+  { id: "rear", kind: "mod", pos: [-0.12, 0, 0.215], explode: [-0.92, 0, 0.34] },
+  { id: "estop", kind: "mod", pos: [-0.1, 0.11, 0.31], explode: [-0.45, 0.5, 0.42] },
+  { id: "mast", kind: "mod", pos: [0.02, 0, 0.43], explode: [0, 0, 0.5] },
+  { id: "head", kind: "mod", pos: [0.02, 0, 0.57], explode: [0, 0, 0.96] },
+  { id: "acoustic", kind: "mod", pos: [0.14, 0.075, 0.58], explode: [0.52, 0.62, 0.5] },
+  { id: "thermal", kind: "mod", pos: [0.145, 0, 0.6], explode: [0.74, 0, 0.72] },
+  { id: "hdcam", kind: "mod", pos: [0.145, -0.075, 0.58], explode: [0.52, -0.62, 0.5] },
+  { id: "gas", kind: "mod", pos: [0.14, 0, 0.535], explode: [0.82, 0.32, 0.36] },
+  { id: "nav", kind: "mod", pos: [0.145, 0, 0.48], explode: [0.96, 0, 0.16] },
+  { id: "antennaL", kind: "mod", pos: [0, 0.07, 0.71], explode: [0, 0.34, 0.5] },
+  { id: "antennaR", kind: "mod", pos: [0, -0.07, 0.71], explode: [0, -0.34, 0.5] },
+  { id: "railL", kind: "mod", pos: [0.03, 0.176, -0.1], explode: [0, 0.6, -0.08] },
+  { id: "railR", kind: "mod", pos: [0.03, -0.176, -0.1], explode: [0, -0.6, -0.08] },
 ];
 
-const STL_PARTS = PARTS.filter((p) => p.shape.kind === "stl");
-const STL_FILES = STL_PARTS.map(
-  (p) => `/models/tron1/${(p.shape as { file: string }).file}.stl`,
-);
-
-const MATERIALS: Record<MatKey, THREE.MeshStandardMaterialParameters> = {
-  shell: { color: "#e7eaf0", metalness: 0.55, roughness: 0.42 },
-  // legs — lightened steel so they read against the dark scene
-  metal: { color: "#9aa4b5", metalness: 0.72, roughness: 0.33 },
-  casing: { color: "#474f60", metalness: 0.6, roughness: 0.42 },
-  frame: { color: "#717b8c", metalness: 0.66, roughness: 0.4 },
-  tire: { color: "#101218", metalness: 0.25, roughness: 0.72 },
-  orange: { color: "#ec5a16", metalness: 0.3, roughness: 0.5, emissive: "#5e1f04", emissiveIntensity: 0.35 },
-  sensor: { color: "#22324f", metalness: 0.5, roughness: 0.4, emissive: "#3d6dfb", emissiveIntensity: 0.35 },
-  lens: { color: "#0a0e16", metalness: 0.1, roughness: 0.13 },
-  estop: { color: "#d8392a", metalness: 0.3, roughness: 0.45, emissive: "#5e120a", emissiveIntensity: 0.5 },
-  antenna: { color: "#2d333f", metalness: 0.6, roughness: 0.4 },
-  core: { color: "#16223f", metalness: 0.5, roughness: 0.4, emissive: "#3d6dfb", emissiveIntensity: 0.55 },
-};
+const STL_PARTS = PARTS.filter((p) => p.kind === "stl");
+const STL_FILES = STL_PARTS.map((p) => `/models/tron1/${p.file}.stl`);
 
 const INTERACTIVE_EXPLODE = 0.5;
 const easeInOut = (t: number) =>
@@ -128,7 +99,7 @@ function RobotModel({ progressRef, interactive, highlighted, onPick, reduced }: 
 
   const spinRef = useRef<THREE.Group>(null);
   const contentRef = useRef<THREE.Group>(null);
-  const meshes = useRef<(THREE.Mesh | null)[]>([]);
+  const groups = useRef<(THREE.Group | null)[]>([]);
   const smooth = useRef(interactive ? INTERACTIVE_EXPLODE : 0);
 
   useLayoutEffect(() => {
@@ -153,16 +124,15 @@ function RobotModel({ progressRef, interactive, highlighted, onPick, reduced }: 
     const e = easeInOut(smooth.current);
 
     for (let i = 0; i < PARTS.length; i++) {
-      const m = meshes.current[i];
-      if (!m) continue;
+      const grp = groups.current[i];
+      if (!grp) continue;
       const { pos, explode } = PARTS[i];
-      m.position.set(
+      grp.position.set(
         pos[0] + explode[0] * e,
         pos[1] + explode[1] * e,
         pos[2] + explode[2] * e,
       );
     }
-    // gentle auto-spin only in scroll mode
     if (spinRef.current && !interactive && !reduced) {
       spinRef.current.rotation.y += d * 0.2;
     }
@@ -173,44 +143,40 @@ function RobotModel({ progressRef, interactive, highlighted, onPick, reduced }: 
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group ref={contentRef}>
           {PARTS.map((p, i) => {
-            const hot = highlighted?.includes(p.id);
-            const base = MATERIALS[p.mat];
-            const handlers = interactive && onPick
-              ? {
-                  onClick: (ev: ThreeEvent<MouseEvent>) => {
-                    ev.stopPropagation();
-                    onPick(p.id);
-                  },
-                  onPointerOver: (ev: ThreeEvent<PointerEvent>) => {
-                    ev.stopPropagation();
-                    document.body.style.cursor = "pointer";
-                  },
-                  onPointerOut: () => {
-                    document.body.style.cursor = "";
-                  },
-                }
-              : {};
+            const hot = !!highlighted?.includes(p.id);
+            const handlers =
+              interactive && onPick
+                ? {
+                    onClick: (ev: ThreeEvent<MouseEvent>) => {
+                      ev.stopPropagation();
+                      onPick(p.id);
+                    },
+                    onPointerOver: (ev: ThreeEvent<PointerEvent>) => {
+                      ev.stopPropagation();
+                      document.body.style.cursor = "pointer";
+                    },
+                    onPointerOut: () => {
+                      document.body.style.cursor = "";
+                    },
+                  }
+                : {};
             return (
-              <mesh
+              <group
                 key={p.id}
                 ref={(el) => {
-                  meshes.current[i] = el;
+                  groups.current[i] = el;
                 }}
                 position={p.pos}
-                rotation={p.rot ?? [0, 0, 0]}
-                geometry={p.shape.kind === "stl" ? geoByPart.get(p.id) : undefined}
                 {...handlers}
               >
-                {p.shape.kind === "box" && <boxGeometry args={p.shape.box} />}
-                {p.shape.kind === "cyl" && (
-                  <cylinderGeometry args={[p.shape.cyl[0], p.shape.cyl[1], p.shape.cyl[2], 28]} />
+                {p.kind === "stl" ? (
+                  <mesh geometry={geoByPart.get(p.id)}>
+                    <meshStandardMaterial {...partMaterial(p.mat ?? "metal", hot)} />
+                  </mesh>
+                ) : (
+                  <PartGeometry id={p.id} hot={hot} />
                 )}
-                <meshStandardMaterial
-                  {...base}
-                  emissive={hot ? "#6ff0ff" : (base.emissive ?? "#000000")}
-                  emissiveIntensity={hot ? 0.9 : (base.emissiveIntensity ?? 0)}
-                />
-              </mesh>
+              </group>
             );
           })}
         </group>
