@@ -24,17 +24,17 @@ export const landing = {
 
   /* ---- 1 · hero -------------------------------------------------- */
   hero: {
-    eyebrow: "Embodied AI · Autonomous inspection",
-    headline: "See the threat before it strikes.",
+    eyebrow: "Autonomous inspection robot",
+    headline: "Autonomous inspection for data centers and industrial sites.",
     subheadline:
-      "BraveBot is a wheel-legged autonomous robot that patrols AI data centers and industrial sites — sensing, reasoning and reporting invisible infrastructure failures before they become downtime.",
+      "BraveBot is a wheel-legged robot with a four-sensor stack and on-board AI — built to patrol facilities, detect developing faults, and produce risk-scored work orders.",
     ctaPrimary: { label: "Explore the robot", href: "/explore" },
     ctaSecondary: { label: "Request a demo", href: "#contact" },
     stats: [
-      { value: "24/7", label: "Autonomous patrol" },
+      { value: "48 lb", label: "Chassis weight" },
+      { value: "Wheel-legged", label: "Mobility platform" },
       { value: "4-sensor", label: "Acoustic · thermal · gas · visual" },
-      { value: "Edge AI", label: "On-board, no cloud dependency" },
-      { value: "< T-30 min", label: "Typical early-warning lead time" },
+      { value: "Edge AI", label: "On-board · offline-capable" },
     ],
   },
 
@@ -56,36 +56,36 @@ export const landing = {
 
   /* ---- 2 · scroll story (pinned, 4 states) ----------------------- */
   story: {
-    heading: "One patrol. Four ways to catch a failure.",
+    heading: "From patrol to work order.",
     states: [
       {
         tag: "01 — Patrol",
-        title: "It covers every aisle, every shift.",
-        body: "BraveBot rolls and steps through the whole facility on a repeatable route — no fatigue, no blind spots, no shift gaps.",
+        title: "Continuous facility patrol.",
+        body: "A repeatable route across every aisle and zone, on a fixed schedule or on demand.",
       },
       {
-        tag: "02 — Sense",
-        title: "It hears, sees and smells what people can't.",
-        body: "A fused sensor stack picks up ultrasonic leaks, thermal drift, off-gassing and visual anomalies long before they are obvious.",
+        tag: "02 — Capture",
+        title: "Four-sensor capture.",
+        body: "Acoustic, thermal, gas and visual data, time-aligned on every pass.",
       },
       {
-        tag: "03 — Reason",
-        title: "It diagnoses on the edge, in real time.",
-        body: "An on-board multimodal model fuses every signal, localizes the source and scores the risk — with zero cloud dependency.",
+        tag: "03 — Diagnose",
+        title: "On-board diagnosis.",
+        body: "An edge multimodal model fuses the signals, localizes the source and scores the risk. No cloud.",
       },
       {
         tag: "04 — Report",
-        title: "It raises the alert before the alarm.",
-        body: "Findings become human-readable work orders and BMS / DCIM / CMMS events — routed before a failure ever trips a conventional alarm.",
+        title: "Actionable output.",
+        body: "Findings become risk-scored work orders and BMS / DCIM / CMMS events, with evidence attached.",
       },
     ],
   },
 
   /* ---- 3 · feature grid ------------------------------------------ */
   features: {
-    heading: "Built to inspect what fixed sensors and human patrols miss.",
+    heading: "A rugged platform, a fused sensor stack, an edge-AI brain.",
     intro:
-      "A rugged wheel-legged platform, a four-sensor fusion stack and an edge-resident AI brain — engineered for real, harsh facilities.",
+      "Six capabilities, engineered as one platform for real, harsh facilities.",
     cards: [
       {
         kicker: "Mobility",
@@ -114,7 +114,7 @@ export const landing = {
       },
       {
         kicker: "Operations",
-        title: "Action, not just alerts",
+        title: "Operational output",
         body: "Every finding becomes a risk-scored, evidence-attached work order pushed straight into your facility systems.",
       },
     ],
@@ -122,9 +122,9 @@ export const landing = {
 
   /* ---- 4 · integrations / social proof --------------------------- */
   integrations: {
-    heading: "Drops into the systems you already run.",
+    heading: "Connects to the systems you run.",
     intro:
-      "BraveBot speaks the protocols of modern facility and maintenance operations — no rip-and-replace.",
+      "Standard protocols for facility, maintenance and historian systems.",
     items: [
       "OPC UA",
       "MQTT",
@@ -166,8 +166,8 @@ export const landing = {
 
   /* ---- 6 · final CTA --------------------------------------------- */
   finalCta: {
-    headline: "Deploy a robot that reports before the alarm.",
-    body: "Bring autonomous, multimodal inspection to your data center or industrial site.",
+    headline: "Bring autonomous inspection to your facility.",
+    body: "See the full platform, or talk to the team about a deployment.",
     ctaPrimary: { label: "Request a demo", href: "#contact" },
     ctaSecondary: { label: "Explore the platform", href: "/explore" },
   },
