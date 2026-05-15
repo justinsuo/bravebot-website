@@ -55,7 +55,7 @@ export function FinalCTA() {
               </span>
               <span className="text-sm font-semibold tracking-tight">
                 {brand.name}
-                <span className="ml-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-tfaint">
+                <span className="ml-2 text-xs font-normal text-tfaint">
                   {brand.org}
                 </span>
               </span>
@@ -77,7 +77,7 @@ export function FinalCTA() {
           </nav>
         </div>
 
-        <div className="mx-auto mt-10 w-full max-w-6xl border-t border-line pt-6 font-mono text-[0.68rem] text-tfaint">
+        <div className="mx-auto mt-10 w-full max-w-6xl border-t border-line pt-6 text-xs text-tfaint">
           © {year} {brand.org}. Concept site — not affiliated with any third party.
         </div>
       </footer>

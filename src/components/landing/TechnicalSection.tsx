@@ -16,10 +16,7 @@ export function TechnicalSection() {
     <section id="technical" className="relative px-5 py-28 sm:px-8 md:py-36">
       <div className="mx-auto w-full max-w-6xl">
         <GsapReveal className="max-w-2xl">
-          <span className="font-mono text-xs uppercase tracking-[0.26em] text-cyan-bright">
-            Architecture
-          </span>
-          <h2 className="mt-4 text-3xl leading-tight sm:text-4xl md:text-[2.9rem]">
+          <h2 className="text-3xl leading-tight sm:text-4xl md:text-[2.9rem]">
             {heading}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-tdim sm:text-lg">
@@ -39,7 +36,7 @@ export function TechnicalSection() {
               {pipeline.map((p, i) => (
                 <GsapReveal key={p.step} delay={i * 0.08} y={28}>
                   <li className="relative flex items-start gap-4 rounded-xl border border-line bg-panel/60 p-4">
-                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-cyan/40 bg-void font-mono text-xs text-cyan-bright">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-cyan/40 bg-void text-sm font-semibold text-cyan-bright">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <div>

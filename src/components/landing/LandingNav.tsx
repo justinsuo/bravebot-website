@@ -31,7 +31,7 @@ export function LandingNav() {
             <span className="block text-sm font-semibold tracking-tight">
               {landing.brand.name}
             </span>
-            <span className="block font-mono text-[0.58rem] uppercase tracking-[0.22em] text-tfaint">
+            <span className="block text-[0.7rem] text-tfaint">
               {landing.brand.org}
             </span>
           </span>

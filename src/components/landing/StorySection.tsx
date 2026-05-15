@@ -16,10 +16,7 @@ export function StorySection() {
     <section id="story" className="relative border-t border-line px-5 py-28 sm:px-8 md:py-36">
       <div className="mx-auto w-full max-w-6xl">
         <GsapReveal className="max-w-2xl">
-          <span className="font-mono text-xs uppercase tracking-[0.26em] text-cyan-bright">
-            How it works
-          </span>
-          <h2 className="mt-4 text-3xl leading-tight sm:text-4xl md:text-[2.9rem]">
+          <h2 className="text-3xl leading-tight sm:text-4xl md:text-[2.9rem]">
             {heading}
           </h2>
         </GsapReveal>
@@ -28,8 +25,8 @@ export function StorySection() {
           {states.map((state) => (
             <GsapReveal key={state.tag}>
               <article className="h-full bg-void p-7 md:p-9">
-                <span className="font-mono text-xs uppercase tracking-[0.24em] text-cyan-bright">
-                  {state.tag}
+                <span aria-hidden="true" className="text-sm font-semibold text-cyan-bright">
+                  {state.tag.split(" — ")[0]}
                 </span>
                 <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
                   {state.title}

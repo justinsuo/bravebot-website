@@ -15,10 +15,7 @@ export function SocialProof() {
     >
       <div className="mx-auto w-full max-w-6xl">
         <GsapReveal className="mx-auto max-w-2xl text-center">
-          <span className="font-mono text-xs uppercase tracking-[0.26em] text-cyan-bright">
-            Integrations
-          </span>
-          <h2 className="mt-4 text-3xl leading-tight sm:text-4xl md:text-[2.6rem]">
+          <h2 className="text-3xl leading-tight sm:text-4xl md:text-[2.6rem]">
             {heading}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-tdim sm:text-lg">
@@ -30,7 +27,7 @@ export function SocialProof() {
           {items.map((name, i) => (
             <GsapReveal key={name} delay={(i % 5) * 0.06} y={28}>
               <div className="group flex h-20 items-center justify-center rounded-xl border border-line bg-void transition-colors duration-300 hover:border-cyan/45 hover:bg-panel">
-                <span className="font-mono text-sm tracking-wide text-tdim transition-colors group-hover:text-foreground">
+                <span className="text-sm font-medium text-tdim transition-colors group-hover:text-foreground">
                   {name}
                 </span>
               </div>

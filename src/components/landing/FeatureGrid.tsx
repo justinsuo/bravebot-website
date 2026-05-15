@@ -12,10 +12,7 @@ export function FeatureGrid() {
     <section id="features" className="relative px-5 py-28 sm:px-8 md:py-36">
       <div className="mx-auto w-full max-w-6xl">
         <GsapReveal className="max-w-2xl">
-          <span className="font-mono text-xs uppercase tracking-[0.26em] text-cyan-bright">
-            Capabilities
-          </span>
-          <h2 className="mt-4 text-3xl leading-tight sm:text-4xl md:text-[2.9rem]">
+          <h2 className="text-3xl leading-tight sm:text-4xl md:text-[2.9rem]">
             {heading}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-tdim sm:text-lg">
@@ -29,9 +26,7 @@ export function FeatureGrid() {
               <article className="group h-full bg-void p-7 transition-colors duration-300 hover:bg-panel">
                 <div className="flex items-center gap-2.5">
                   <span className="h-1.5 w-1.5 rounded-full bg-cyan transition-transform duration-300 group-hover:scale-150" />
-                  <span className="font-mono text-[0.68rem] uppercase tracking-[0.2em] text-tfaint">
-                    {card.kicker}
-                  </span>
+                  <span className="text-xs font-medium text-tdim">{card.kicker}</span>
                 </div>
                 <h3 className="mt-4 text-xl font-semibold tracking-tight text-foreground">
                   {card.title}

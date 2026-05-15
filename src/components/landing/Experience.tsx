@@ -44,11 +44,7 @@ const band = (x: number, a: number, b: number, c: number, d: number) =>
 function HeroCopy() {
   return (
     <>
-      <span className="inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-cyan-bright">
-        <span className="h-1.5 w-1.5 rounded-full bg-cyan" />
-        {landing.hero.eyebrow}
-      </span>
-      <h1 className="mt-6 text-balance text-4xl leading-[1.06] sm:text-6xl md:text-7xl">
+      <h1 className="text-balance text-4xl leading-[1.06] sm:text-6xl md:text-7xl">
         {landing.hero.headline}
       </h1>
       <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-tdim sm:text-lg">
@@ -181,11 +177,6 @@ export function Experience() {
             </p>
           </div>
         ))}
-
-        {/* concept note */}
-        <span className="absolute bottom-5 left-1/2 -translate-x-1/2 font-mono text-[0.6rem] uppercase tracking-[0.22em] text-tfaint">
-          {landing.experience.note}
-        </span>
       </div>
     </section>
   );
