@@ -48,7 +48,7 @@ export function SiteNav() {
             <span className="block font-mono text-[0.62rem] uppercase tracking-[0.28em] text-orange-bright">
               Vigiles Robotics
             </span>
-            <span className="block text-base font-bold tracking-tight">BraveBot</span>
+            <span className="block font-display text-sm tracking-normal">BraveBot</span>
           </span>
         </a>
 

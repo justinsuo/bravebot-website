@@ -63,6 +63,7 @@
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
 }
 
 /* Default any bare `border` utility to the line token */
@@ -83,6 +84,21 @@ body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+/* Michroma — wide, precise display face for section headings.
+   Single weight: keep font-weight 400 to avoid synthetic bold. */
+h1,
+h2 {
+  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.24;
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 400;
 }
 
 /* Architectural blueprint grid */

@@ -36,7 +36,7 @@ export function FinalCTA() {
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-orange-bright">
               Vigiles Robotics · BraveBot
             </p>
-            <h2 className="text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl">
+            <h2 className="text-[1.6rem] leading-[1.32] sm:text-[2.05rem] md:text-[2.6rem]">
               <span className="text-gradient">{finalCta.headline}</span>
             </h2>
           </Reveal>

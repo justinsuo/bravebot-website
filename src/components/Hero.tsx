@@ -68,7 +68,7 @@ export function Hero() {
               Vigiles Robotics · BraveBot
             </span>
 
-            <h1 className="mt-5 text-balance text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl">
+            <h1 className="mt-6 text-balance text-[1.65rem] leading-[1.34] sm:text-[2.1rem] md:text-[2.9rem]">
               {before}
               <span className="text-gradient">{accent}</span>
               {after}

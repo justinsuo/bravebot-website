@@ -97,8 +97,8 @@ export const hotspots: Hotspot[] = [
     id: "wheel-feet",
     index: 1,
     name: "Wheel-feet",
-    x: 37,
-    y: 94,
+    x: 39,
+    y: 91,
     summary:
       "BraveBot uses wheels as feet, giving it efficient rolling motion while preserving the stability and terrain adaptability of a legged platform.",
     whyItMatters:
@@ -113,8 +113,8 @@ export const hotspots: Hotspot[] = [
     id: "legs",
     index: 2,
     name: "Articulated legs",
-    x: 31,
-    y: 85,
+    x: 33,
+    y: 73,
     summary:
       "Each leg is an articulated mechanical strut assembly — a robotic hip/knee linkage — that adjusts stance height and footprint on demand.",
     whyItMatters:
@@ -127,8 +127,8 @@ export const hotspots: Hotspot[] = [
     id: "balancing",
     index: 3,
     name: "Active balancing system",
-    x: 50,
-    y: 80,
+    x: 43,
+    y: 66,
     summary:
       "A real-time balance controller fuses IMU and joint feedback to keep the platform stable while moving and while standing to scan.",
     whyItMatters:
@@ -142,7 +142,7 @@ export const hotspots: Hotspot[] = [
     index: 4,
     name: "Sensor mast",
     x: 50,
-    y: 9,
+    y: 12,
     summary:
       "The elevated mast gives the robot a better vantage point for rack inspection, gauge reading, acoustic source localization, thermal scanning and gas detection.",
     whyItMatters:
@@ -155,8 +155,8 @@ export const hotspots: Hotspot[] = [
     id: "acoustic",
     index: 5,
     name: "Acoustic imaging array",
-    x: 39,
-    y: 17,
+    x: 40,
+    y: 13,
     summary:
       "A phased array of microphones that detects ultrasonic signatures from coolant micro-leaks, partial discharge, arcing precursors, pump wear and abnormal mechanical sounds.",
     whyItMatters:
@@ -170,7 +170,7 @@ export const hotspots: Hotspot[] = [
     index: 6,
     name: "Thermal camera",
     x: 59,
-    y: 17,
+    y: 13,
     summary:
       "A radiometric infrared camera that maps hotspots across racks, UPS rooms, PDU connections, battery banks, cable joints and hot/cold aisles.",
     whyItMatters:
@@ -184,7 +184,7 @@ export const hotspots: Hotspot[] = [
     index: 7,
     name: "Gas / laser telemetry sensor",
     x: 50,
-    y: 35,
+    y: 27,
     summary:
       "In data centers, focus is on VOC, CO, H2 and battery off-gas detection. In industrial / OTC mode, an optional OGI / TDLAS-style module adds methane and flammable gas detection.",
     whyItMatters:
@@ -198,7 +198,7 @@ export const hotspots: Hotspot[] = [
     index: 8,
     name: "HD visual AI camera",
     x: 50,
-    y: 27,
+    y: 22,
     summary:
       "A high-definition camera with on-board vision models that read gauges, indicator lights and asset tags, and flag containment, seal and compliance issues.",
     whyItMatters:
@@ -212,7 +212,7 @@ export const hotspots: Hotspot[] = [
     index: 9,
     name: "Edge AI compute module",
     x: 50,
-    y: 67,
+    y: 58,
     summary:
       "Fuses sensor data locally, routes findings to specialized experts, and outputs human-readable diagnosis, risk scores and maintenance actions without relying on cloud connectivity.",
     whyItMatters:
@@ -226,7 +226,7 @@ export const hotspots: Hotspot[] = [
     index: 10,
     name: "Hot-swap battery",
     x: 50,
-    y: 75,
+    y: 63,
     summary:
       "A hot-swappable battery pack designed for a roughly 10-second swap, keeping the robot in service around the clock.",
     whyItMatters:
@@ -240,7 +240,7 @@ export const hotspots: Hotspot[] = [
     index: 11,
     name: "Rugged sealed shell",
     x: 69,
-    y: 50,
+    y: 45,
     summary:
       "A sealed rectangular industrial torso with bumpers, protective rails, cable channels and serviceable panels — targeting an IP66 rating.",
     whyItMatters:

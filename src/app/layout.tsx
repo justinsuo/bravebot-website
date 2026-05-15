@@ -1,10 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Michroma } from "next/font/google";
 import "./globals.css";
 import { ModeProvider } from "@/components/ModeContext";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const michroma = Michroma({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
 
 const description =
   "BraveBot is a wheel-legged autonomous inspection robot for AI data centers and industrial environments. It fuses acoustic, thermal, gas and visual sensing with on-edge AI to detect invisible infrastructure failures before they cause downtime.";
@@ -54,7 +60,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${michroma.variable} h-full antialiased`}
+    >
       <body className="min-h-full">
         <a
           href="#anatomy"

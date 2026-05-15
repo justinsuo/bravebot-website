@@ -49,7 +49,7 @@ export function SectionHeading({
   return (
     <header className="mb-12 max-w-3xl">
       <Eyebrow>{eyebrow}</Eyebrow>
-      <h2 className="text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-[2.65rem]">
+      <h2 className="text-[1.5rem] leading-[1.32] sm:text-[1.85rem] md:text-[2.2rem]">
         {title}
       </h2>
       {intro && <p className="mt-4 text-base leading-relaxed text-tdim sm:text-lg">{intro}</p>}
@@ -145,7 +145,7 @@ export function StatBlock({
 }) {
   return (
     <div className="rounded-xl border border-line bg-panel/70 p-4">
-      <div className="font-mono text-xl font-bold text-cyan-bright sm:text-2xl">{value}</div>
+      <div className="font-display text-base text-cyan-bright sm:text-lg">{value}</div>
       <div className="mt-1 text-sm font-medium text-foreground">{label}</div>
       {note && <div className="mt-0.5 text-xs text-tfaint">{note}</div>}
     </div>
