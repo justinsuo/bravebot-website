@@ -57,7 +57,7 @@ export function BraveBotSVG({
       </defs>
 
       {/* ground shadow */}
-      <ellipse cx="180" cy="548" rx="150" ry="14" fill="#000000" opacity="0.45" />
+      <ellipse cx="180" cy="548" rx="148" ry="13" fill="#161a22" opacity="0.16" />
 
       {/* ===== LEGS (behind torso) ===== */}
       {[
@@ -283,7 +283,7 @@ export function BraveBotSVG({
               cy="120"
               r="60"
               fill="none"
-              stroke="#38d6ef"
+              stroke="#0e8aa3"
               strokeWidth="2"
               opacity="0"
               style={{

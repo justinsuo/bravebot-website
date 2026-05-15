@@ -21,33 +21,33 @@ export function Hero() {
       {/* ambient tech grid */}
       <div className="absolute inset-0 bg-techgrid" aria-hidden="true" />
 
-      {/* radial cyan + orange glows */}
+      {/* soft accent light */}
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden="true"
         style={{
           background:
-            "radial-gradient(60% 50% at 50% 38%, rgba(56,214,239,0.16), transparent 70%), radial-gradient(45% 40% at 78% 80%, rgba(255,106,26,0.13), transparent 70%)",
+            "radial-gradient(58% 48% at 50% 34%, rgba(14,138,163,0.12), transparent 72%), radial-gradient(46% 42% at 80% 82%, rgba(234,90,18,0.10), transparent 72%)",
         }}
       />
 
-      {/* simulated glowing server racks — left + right edges */}
+      {/* server-rack aisle silhouettes — left + right edges */}
       <div
-        className="pointer-events-none absolute inset-y-0 left-0 hidden w-[14vw] opacity-70 md:block"
+        className="pointer-events-none absolute inset-y-0 left-0 hidden w-[14vw] opacity-60 md:block"
         aria-hidden="true"
         style={{
           background:
-            "repeating-linear-gradient(90deg, rgba(20,48,95,0.55) 0px, rgba(20,48,95,0.55) 26px, rgba(56,214,239,0.10) 27px, rgba(56,214,239,0.10) 30px, transparent 31px, transparent 58px)",
+            "repeating-linear-gradient(90deg, rgba(150,162,184,0.5) 0px, rgba(150,162,184,0.5) 26px, rgba(32,82,207,0.16) 27px, rgba(32,82,207,0.16) 30px, transparent 31px, transparent 58px)",
           maskImage: "linear-gradient(to right, black, transparent)",
           WebkitMaskImage: "linear-gradient(to right, black, transparent)",
         }}
       />
       <div
-        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[14vw] opacity-70 md:block"
+        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[14vw] opacity-60 md:block"
         aria-hidden="true"
         style={{
           background:
-            "repeating-linear-gradient(90deg, rgba(20,48,95,0.55) 0px, rgba(20,48,95,0.55) 26px, rgba(56,214,239,0.10) 27px, rgba(56,214,239,0.10) 30px, transparent 31px, transparent 58px)",
+            "repeating-linear-gradient(90deg, rgba(150,162,184,0.5) 0px, rgba(150,162,184,0.5) 26px, rgba(32,82,207,0.16) 27px, rgba(32,82,207,0.16) 30px, transparent 31px, transparent 58px)",
           maskImage: "linear-gradient(to left, black, transparent)",
           WebkitMaskImage: "linear-gradient(to left, black, transparent)",
         }}
@@ -124,7 +124,7 @@ export function Hero() {
                 aria-hidden="true"
                 style={{
                   background:
-                    "radial-gradient(circle at 50% 30%, rgba(255,106,26,0.22), rgba(56,214,239,0.10) 55%, transparent 75%)",
+                    "radial-gradient(circle at 50% 30%, rgba(234,90,18,0.18), rgba(14,138,163,0.10) 55%, transparent 75%)",
                 }}
               />
 
@@ -158,7 +158,7 @@ export function Hero() {
 
               <BraveBotSVG
                 scanFx
-                className="anim-float relative z-10 w-full drop-shadow-[0_24px_48px_rgba(0,0,0,0.6)]"
+                className="anim-float relative z-10 w-full drop-shadow-[0_28px_44px_rgba(22,30,55,0.22)]"
               />
 
               {/* concept caption chip */}

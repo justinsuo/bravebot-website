@@ -1,35 +1,39 @@
 @import "tailwindcss";
 
-/* ===== BraveBot / Vigiles Robotics design system ===== */
+/* ============================================================
+   BraveBot / Vigiles Robotics — "Engineered Light" design system
+   A precise, architectural light theme: cool paper surfaces,
+   ink typography, refined teal + confident industrial orange.
+   ============================================================ */
 :root {
-  --background: #05070d;
-  --foreground: #e6ecf5;
+  --background: #eef0f4;
+  --foreground: #161a22;
 
-  /* Data center palette */
-  --void: #05070d;
-  --abyss: #080c16;
-  --panel: #0c1322;
-  --panel-2: #111a2e;
-  --line: #1d2c47;
-  --line-soft: #16223a;
+  /* Surfaces — light, layered (void = page, panel = card) */
+  --void: #eef0f4;
+  --abyss: #e4e7ee;
+  --panel: #ffffff;
+  --panel-2: #f4f6f9;
+  --line: #d4d9e3;
+  --line-soft: #e6e9f0;
 
-  /* Cyan / blue */
-  --cyan: #38d6ef;
-  --cyan-bright: #6ff0ff;
-  --blue: #2f6bd6;
-  --blue-deep: #14305f;
+  /* Teal / blue */
+  --cyan: #0e8aa3;
+  --cyan-bright: #0b6c84;
+  --blue: #2052cf;
+  --blue-deep: #16357f;
 
-  /* Vigiles orange accents */
-  --orange: #ff6a1a;
-  --orange-bright: #ff9148;
+  /* Vigiles orange */
+  --orange: #ea5a12;
+  --orange-bright: #c2410c;
 
-  --text: #e6ecf5;
-  --text-dim: #9fb0c8;
-  --text-faint: #65758f;
+  --text: #161a22;
+  --text-dim: #515a6b;
+  --text-faint: #717b8d;
 
-  --ok: #4ade80;
-  --warn: #fbbf24;
-  --crit: #f0533a;
+  --ok: #1d864a;
+  --warn: #b15c08;
+  --crit: #d23b2c;
 }
 
 @theme inline {
@@ -61,6 +65,13 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Default any bare `border` utility to the line token */
+*,
+::before,
+::after {
+  border-color: var(--line);
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
@@ -74,29 +85,38 @@ body {
   overflow-x: hidden;
 }
 
-/* Ambient tech grid */
+/* Architectural blueprint grid */
 .bg-techgrid {
   background-image:
-    linear-gradient(rgba(56, 214, 239, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56, 214, 239, 0.045) 1px, transparent 1px);
+    linear-gradient(rgba(32, 82, 207, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32, 82, 207, 0.05) 1px, transparent 1px);
   background-size: 46px 46px;
 }
 
+/* Soft accent elevation (replaces neon glow) */
 .glow-cyan {
-  box-shadow: 0 0 0 1px rgba(56, 214, 239, 0.25), 0 0 38px -8px rgba(56, 214, 239, 0.45);
+  box-shadow:
+    0 0 0 1px rgba(14, 138, 163, 0.28),
+    0 14px 32px -16px rgba(14, 138, 163, 0.45);
 }
 .glow-orange {
-  box-shadow: 0 0 0 1px rgba(255, 106, 26, 0.35), 0 0 34px -8px rgba(255, 106, 26, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(234, 90, 18, 0.3),
+    0 14px 32px -16px rgba(234, 90, 18, 0.5);
 }
 
+/* Frosted light glass card */
 .glass {
-  background: linear-gradient(160deg, rgba(17, 26, 46, 0.86), rgba(8, 12, 22, 0.78));
-  backdrop-filter: blur(14px);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.96), rgba(244, 246, 249, 0.84));
+  backdrop-filter: blur(12px);
   border: 1px solid var(--line);
+  box-shadow:
+    0 1px 2px rgba(22, 26, 34, 0.04),
+    0 16px 36px -22px rgba(22, 26, 34, 0.22);
 }
 
 .text-gradient {
-  background: linear-gradient(100deg, #ffffff 8%, var(--cyan-bright) 52%, var(--orange-bright) 100%);
+  background: linear-gradient(100deg, #161a22 4%, var(--cyan) 48%, var(--orange) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -107,21 +127,21 @@ body {
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar { width: 11px; height: 11px; }
 ::-webkit-scrollbar-track { background: var(--abyss); }
-::-webkit-scrollbar-thumb { background: var(--line); border-radius: 8px; }
+::-webkit-scrollbar-thumb { background: #c2c9d6; border-radius: 8px; border: 2px solid var(--abyss); }
 ::-webkit-scrollbar-thumb:hover { background: var(--blue); }
 
-/* Focus visibility for accessibility */
+/* Focus visibility */
 :focus-visible {
-  outline: 2px solid var(--cyan-bright);
+  outline: 2px solid var(--blue);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
 /* Animations */
 @keyframes pulse-ring {
-  0% { transform: scale(0.7); opacity: 0.85; }
+  0% { transform: scale(0.7); opacity: 0.7; }
   100% { transform: scale(2.5); opacity: 0; }
 }
 @keyframes sweep {
