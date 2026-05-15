@@ -64,7 +64,7 @@ export function RobotAnatomyExplorer() {
                       <span
                         className={`flex h-7 w-7 items-center justify-center rounded-full border font-mono text-xs font-bold transition-all duration-200 ${
                           isActive
-                            ? "border-orange bg-orange text-black ring-2 ring-orange/40 scale-110"
+                            ? "border-orange bg-orange text-white ring-2 ring-orange/40 scale-110"
                             : "border-cyan/60 bg-panel/90 text-cyan-bright hover:border-cyan hover:bg-cyan/20 hover:scale-110"
                         }`}
                       >

@@ -1,4 +1,5 @@
 import { SiteNav } from "@/components/SiteNav";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { Hero } from "@/components/Hero";
 import { RobotAnatomyExplorer } from "@/components/RobotAnatomyExplorer";
 import { WheelLeggedExplainer } from "@/components/WheelLeggedExplainer";
@@ -23,6 +24,7 @@ function Divider() {
 export default function Page() {
   return (
     <>
+      <ScrollProgress />
       <SiteNav />
       <main>
         <Hero />

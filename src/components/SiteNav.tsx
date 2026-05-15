@@ -48,7 +48,7 @@ export function SiteNav() {
             <span className="block font-mono text-[0.62rem] uppercase tracking-[0.28em] text-orange-bright">
               Vigiles Robotics
             </span>
-            <span className="block font-display text-sm tracking-normal">BraveBot</span>
+            <span className="block text-base font-semibold tracking-tight">BraveBot</span>
           </span>
         </a>
 
@@ -77,7 +77,7 @@ export function SiteNav() {
           <ModeToggle compact />
           <a
             href="#cta"
-            className="hidden rounded-lg bg-orange px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-orange-bright sm:inline-block"
+            className="hidden rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-void transition-opacity hover:opacity-90 sm:inline-block"
           >
             Request Demo
           </a>

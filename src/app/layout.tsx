@@ -1,16 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Michroma } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ModeProvider } from "@/components/ModeContext";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
-const michroma = Michroma({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
+const sans = Inter({ variable: "--font-sans", subsets: ["latin"], display: "swap" });
+const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"], display: "swap" });
 
 const description =
   "BraveBot is a wheel-legged autonomous inspection robot for AI data centers and industrial environments. It fuses acoustic, thermal, gas and visual sensing with on-edge AI to detect invisible infrastructure failures before they cause downtime.";
@@ -51,7 +45,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#eef0f4",
+  themeColor: "#0a0a0c",
   width: "device-width",
   initialScale: 1,
 };
@@ -62,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${michroma.variable} h-full antialiased`}
+      className={`${sans.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="min-h-full">
         <a

@@ -321,7 +321,7 @@ export function BraveBotSVG({
               cy="92"
               r="58"
               fill="none"
-              stroke="#0e8aa3"
+              stroke="#3d6dfb"
               strokeWidth="2"
               opacity="0"
               style={{

@@ -3,11 +3,14 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
-/** Scroll-triggered fade/slide reveal. Respects prefers-reduced-motion. */
+/**
+ * Scroll-triggered reveal — blur + lift + settle.
+ * Respects prefers-reduced-motion (fades only).
+ */
 export function Reveal({
   children,
   delay = 0,
-  y = 26,
+  y = 32,
   className = "",
   as = "div",
 }: {
@@ -22,10 +25,18 @@ export function Reveal({
   return (
     <MotionTag
       className={className}
-      initial={reduce ? { opacity: 0 } : { opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+      initial={
+        reduce
+          ? { opacity: 0 }
+          : { opacity: 0, y, filter: "blur(10px)", scale: 0.985 }
+      }
+      whileInView={
+        reduce
+          ? { opacity: 1 }
+          : { opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }
+      }
+      viewport={{ once: true, margin: "-70px" }}
+      transition={{ duration: 0.7, delay, ease: [0.21, 0.6, 0.25, 1] }}
     >
       {children}
     </MotionTag>

@@ -49,7 +49,7 @@ export function SectionHeading({
   return (
     <header className="mb-12 max-w-3xl">
       <Eyebrow>{eyebrow}</Eyebrow>
-      <h2 className="text-[1.5rem] leading-[1.32] sm:text-[1.85rem] md:text-[2.2rem]">
+      <h2 className="text-[1.9rem] leading-[1.12] sm:text-4xl md:text-[2.9rem]">
         {title}
       </h2>
       {intro && <p className="mt-4 text-base leading-relaxed text-tdim sm:text-lg">{intro}</p>}
@@ -119,13 +119,11 @@ export function CtaButton({
   className?: string;
 }) {
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold tracking-wide transition-all duration-200";
+    "inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium transition-colors duration-200";
   const variants: Record<string, string> = {
-    primary:
-      "bg-orange text-black hover:bg-orange-bright hover:-translate-y-0.5 glow-orange",
-    secondary:
-      "border border-cyan/50 bg-cyan/10 text-cyan-bright hover:bg-cyan/20 hover:-translate-y-0.5",
-    ghost: "border border-line bg-panel-2 text-tdim hover:text-foreground hover:border-cyan/40",
+    primary: "bg-foreground text-void hover:opacity-90",
+    secondary: "border border-line bg-panel-2 text-foreground hover:border-cyan/60 hover:bg-panel",
+    ghost: "border border-line text-tdim hover:text-foreground hover:border-cyan/40",
   };
   return (
     <a href={href} className={`${base} ${variants[variant]} ${className}`}>
@@ -144,9 +142,9 @@ export function StatBlock({
   note?: string;
 }) {
   return (
-    <div className="rounded-xl border border-line bg-panel/70 p-4">
-      <div className="font-display text-base text-cyan-bright sm:text-lg">{value}</div>
-      <div className="mt-1 text-sm font-medium text-foreground">{label}</div>
+    <div className="rounded-xl border border-line bg-panel p-4">
+      <div className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{value}</div>
+      <div className="mt-1 text-sm font-medium text-tdim">{label}</div>
       {note && <div className="mt-0.5 text-xs text-tfaint">{note}</div>}
     </div>
   );

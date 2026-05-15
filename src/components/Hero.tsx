@@ -1,13 +1,25 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { BraveBotSVG } from "@/components/BraveBotSVG";
 import { CtaButton, StatBlock } from "@/components/ui";
 import { hero } from "@/data/bravebot";
 
-/** Full-screen landing hero — robot in a data center aisle with sensor scan FX. */
+/** Full-screen landing hero — robot in a data center aisle with scroll parallax. */
 export function Hero() {
   const reduce = useReducedMotion();
+  const heroRef = useRef<HTMLElement>(null);
+
+  /* Scroll-linked parallax across the hero. */
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const robotY = useTransform(scrollYProgress, [0, 1], [0, 160]);
+  const robotScale = useTransform(scrollYProgress, [0, 1], [1, 0.86]);
+  const gridY = useTransform(scrollYProgress, [0, 1], [0, 110]);
+  const indicatorOpacity = useTransform(scrollYProgress, [0, 0.22], [1, 0]);
 
   /* Split the headline so the "Dark AI Data Center" portion can be gradient-styled. */
   const accent = "Dark AI Data Center";
@@ -15,11 +27,16 @@ export function Hero() {
 
   return (
     <section
+      ref={heroRef}
       id="hero"
       className="relative flex min-h-screen flex-col overflow-hidden bg-void"
     >
-      {/* ambient tech grid */}
-      <div className="absolute inset-0 bg-techgrid" aria-hidden="true" />
+      {/* ambient tech grid — parallax */}
+      <motion.div
+        className="absolute inset-0 bg-techgrid"
+        aria-hidden="true"
+        style={reduce ? undefined : { y: gridY }}
+      />
 
       {/* soft accent light */}
       <div
@@ -27,27 +44,27 @@ export function Hero() {
         aria-hidden="true"
         style={{
           background:
-            "radial-gradient(58% 48% at 50% 34%, rgba(14,138,163,0.12), transparent 72%), radial-gradient(46% 42% at 80% 82%, rgba(234,90,18,0.10), transparent 72%)",
+            "radial-gradient(56% 46% at 50% 30%, rgba(61,109,251,0.16), transparent 72%), radial-gradient(50% 44% at 82% 86%, rgba(61,109,251,0.08), transparent 74%)",
         }}
       />
 
       {/* server-rack aisle silhouettes — left + right edges */}
       <div
-        className="pointer-events-none absolute inset-y-0 left-0 hidden w-[14vw] opacity-60 md:block"
+        className="pointer-events-none absolute inset-y-0 left-0 hidden w-[14vw] opacity-70 md:block"
         aria-hidden="true"
         style={{
           background:
-            "repeating-linear-gradient(90deg, rgba(150,162,184,0.5) 0px, rgba(150,162,184,0.5) 26px, rgba(32,82,207,0.16) 27px, rgba(32,82,207,0.16) 30px, transparent 31px, transparent 58px)",
+            "repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 26px, rgba(61,109,251,0.16) 27px, rgba(61,109,251,0.16) 30px, transparent 31px, transparent 58px)",
           maskImage: "linear-gradient(to right, black, transparent)",
           WebkitMaskImage: "linear-gradient(to right, black, transparent)",
         }}
       />
       <div
-        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[14vw] opacity-60 md:block"
+        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[14vw] opacity-70 md:block"
         aria-hidden="true"
         style={{
           background:
-            "repeating-linear-gradient(90deg, rgba(150,162,184,0.5) 0px, rgba(150,162,184,0.5) 26px, rgba(32,82,207,0.16) 27px, rgba(32,82,207,0.16) 30px, transparent 31px, transparent 58px)",
+            "repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 26px, rgba(61,109,251,0.16) 27px, rgba(61,109,251,0.16) 30px, transparent 31px, transparent 58px)",
           maskImage: "linear-gradient(to left, black, transparent)",
           WebkitMaskImage: "linear-gradient(to left, black, transparent)",
         }}
@@ -68,7 +85,7 @@ export function Hero() {
               Vigiles Robotics · BraveBot
             </span>
 
-            <h1 className="mt-6 text-balance text-[1.65rem] leading-[1.34] sm:text-[2.1rem] md:text-[2.9rem]">
+            <h1 className="mt-6 text-balance text-3xl leading-[1.1] sm:text-5xl md:text-[3.4rem]">
               {before}
               <span className="text-gradient">{accent}</span>
               {after}
@@ -95,7 +112,10 @@ export function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="relative w-full max-w-[380px]">
+            <motion.div
+              className="relative w-full max-w-[380px]"
+              style={reduce ? undefined : { y: robotY, scale: robotScale }}
+            >
               {/* acoustic arc rings around the robot head */}
               <div
                 className="pointer-events-none absolute inset-0 flex items-start justify-center"
@@ -124,7 +144,7 @@ export function Hero() {
                 aria-hidden="true"
                 style={{
                   background:
-                    "radial-gradient(circle at 50% 30%, rgba(234,90,18,0.18), rgba(14,138,163,0.10) 55%, transparent 75%)",
+                    "radial-gradient(circle at 50% 32%, rgba(61,109,251,0.28), rgba(61,109,251,0.10) 55%, transparent 76%)",
                 }}
               />
 
@@ -158,14 +178,14 @@ export function Hero() {
 
               <BraveBotSVG
                 scanFx
-                className="anim-float relative z-10 w-full drop-shadow-[0_28px_44px_rgba(22,30,55,0.22)]"
+                className="anim-float relative z-10 w-full drop-shadow-[0_36px_60px_rgba(0,0,0,0.6)]"
               />
 
               {/* concept caption chip */}
               <span className="absolute -bottom-2 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-full border border-line bg-panel/90 px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-tfaint backdrop-blur">
                 Concept visualization
               </span>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
 
@@ -183,10 +203,11 @@ export function Hero() {
       </div>
 
       {/* --- scroll-down indicator --- */}
-      <a
+      <motion.a
         href="#anatomy"
         aria-label="Scroll to robot anatomy"
         className="group absolute bottom-5 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-1.5 text-tfaint transition-colors hover:text-cyan-bright"
+        style={reduce ? undefined : { opacity: indicatorOpacity }}
       >
         <span className="font-mono text-[0.6rem] uppercase tracking-[0.24em]">
           Scroll
@@ -198,7 +219,7 @@ export function Hero() {
             transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
           />
         </span>
-      </a>
+      </motion.a>
     </section>
   );
 }
