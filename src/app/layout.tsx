@@ -1,10 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Geist_Mono } from "next/font/google";
+import { Space_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { ModeProvider } from "@/components/ModeContext";
 
-const sans = Inter({ variable: "--font-sans", subsets: ["latin"], display: "swap" });
-const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"], display: "swap" });
+// Site-wide typeface: Space Grotesk (a designed, technical grotesk) for all
+// UI and headings, paired with its sibling Space Mono for technical labels.
+const sans = Space_Grotesk({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+const mono = Space_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+});
 
 const description =
   "BraveBot is a wheel-legged autonomous inspection robot for AI data centers and industrial environments. It fuses acoustic, thermal, gas and visual sensing with on-edge AI to detect invisible infrastructure failures before they cause downtime.";

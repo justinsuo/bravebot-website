@@ -1,60 +1,38 @@
-import { SiteNav } from "@/components/SiteNav";
-import { ScrollProgress } from "@/components/ScrollProgress";
-import { Hero } from "@/components/Hero";
-import { RobotAnatomyExplorer } from "@/components/RobotAnatomyExplorer";
-import { WheelLeggedExplainer } from "@/components/WheelLeggedExplainer";
-import { SensorFusionConsole } from "@/components/SensorFusionConsole";
-import { ThreatSimulator } from "@/components/ThreatSimulator";
-import { EdgeAIBrain } from "@/components/EdgeAIBrain";
-import { DataPipeline } from "@/components/DataPipeline";
-import { UseCaseCards } from "@/components/UseCaseCards";
-import { IndustrialMode } from "@/components/IndustrialMode";
-import { PUECalculator } from "@/components/PUECalculator";
-import { PatrolDashboardMock } from "@/components/PatrolDashboardMock";
-import { SpecsTable } from "@/components/SpecsTable";
-import { VisualGallery } from "@/components/VisualGallery";
-import { ComparisonTable } from "@/components/ComparisonTable";
-import { FinalCTA } from "@/components/FinalCTA";
+import type { Metadata } from "next";
+import { SmoothScroll, ProgressProvider } from "@/components/landing/scroll";
+import { LandingNav } from "@/components/landing/LandingNav";
+import { Experience } from "@/components/landing/Experience";
+import { FeatureGrid } from "@/components/landing/FeatureGrid";
+import { SocialProof } from "@/components/landing/SocialProof";
+import { TechnicalSection } from "@/components/landing/TechnicalSection";
+import { FinalCTA } from "@/components/landing/FinalCTA";
 
-/** Thin gradient divider between sections. */
-function Divider() {
-  return <div className="mx-auto h-px max-w-6xl hairline" aria-hidden="true" />;
-}
+export const metadata: Metadata = {
+  title: "BraveBot — Embodied AI Inspection Robot | Vigiles Robotics",
+  description:
+    "BraveBot is a wheel-legged autonomous robot that patrols AI data centers and industrial sites — sensing, reasoning and reporting invisible infrastructure failures before they become downtime.",
+};
 
-export default function Page() {
+/**
+ * Premium scroll-driven landing page.
+ *  - Lenis smooth scrolling + GSAP ScrollTrigger
+ *  - a pinned hero with a morphing React Three Fiber particle scene
+ *  - staggered scroll reveals throughout
+ */
+export default function HomePage() {
   return (
-    <>
-      <ScrollProgress />
-      <SiteNav />
-      <main>
-        <Hero />
-        <RobotAnatomyExplorer />
-        <Divider />
-        <WheelLeggedExplainer />
-        <Divider />
-        <SensorFusionConsole />
-        <Divider />
-        <ThreatSimulator />
-        <Divider />
-        <EdgeAIBrain />
-        <Divider />
-        <DataPipeline />
-        <Divider />
-        <UseCaseCards />
-        <Divider />
-        <IndustrialMode />
-        <Divider />
-        <PUECalculator />
-        <Divider />
-        <PatrolDashboardMock />
-        <Divider />
-        <SpecsTable />
-        <Divider />
-        <VisualGallery />
-        <Divider />
-        <ComparisonTable />
+    <SmoothScroll>
+      <LandingNav />
+      <main id="top">
+        {/* hero + pinned 3D scroll story share one scroll-progress context */}
+        <ProgressProvider>
+          <Experience />
+        </ProgressProvider>
+        <FeatureGrid />
+        <SocialProof />
+        <TechnicalSection />
+        <FinalCTA />
       </main>
-      <FinalCTA />
-    </>
+    </SmoothScroll>
   );
 }
