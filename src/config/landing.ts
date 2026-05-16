@@ -199,8 +199,9 @@ export const landing = {
   /* ---- 6 · final CTA --------------------------------------------- */
   finalCta: {
     headline: "Bring autonomous inspection to your facility.",
-    body: "See the full platform, or talk to the team about a deployment.",
-    ctaPrimary: { label: "Request a demo", href: "#contact" },
+    body: "Leave your email and the team will reach out about a BraveBot demo.",
+    // Where demo requests are sent. Change this to your real inbox.
+    contactEmail: "contact@vigilesrobotics.com",
     ctaSecondary: { label: "Explore the platform", href: "#anatomy" },
   },
 

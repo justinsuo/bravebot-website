@@ -26,7 +26,7 @@ import {
   Suspense,
   type RefObject,
 } from "react";
-import { Canvas, useFrame, useLoader, type ThreeEvent } from "@react-three/fiber";
+import { Canvas, useFrame, useLoader, useThree, type ThreeEvent } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
 import * as THREE from "three";
@@ -187,6 +187,69 @@ function RobotModel({ progressRef, interactive, highlighted, onPick, reduced }: 
   );
 }
 
+/**
+ * Pinch-to-zoom for the model only.
+ *  - plain wheel / trackpad scroll → ignored here, so the page keeps scrolling
+ *  - pinch (touch, or trackpad pinch which fires wheel + ctrlKey) → dollies
+ *    the camera and preventDefault()s so the browser doesn't zoom the page
+ */
+function PinchZoom() {
+  const { gl, camera } = useThree();
+
+  useEffect(() => {
+    const el = gl.domElement;
+    const target = new THREE.Vector3(0, 0, 0);
+    const MIN = 4.5;
+    const MAX = 14;
+
+    const setDistance = (d: number) => {
+      const offset = camera.position.clone().sub(target);
+      offset.setLength(THREE.MathUtils.clamp(d, MIN, MAX));
+      camera.position.copy(target).add(offset);
+    };
+
+    const onWheel = (e: WheelEvent) => {
+      if (!e.ctrlKey) return; // a normal scroll — leave the page alone
+      e.preventDefault();
+      setDistance(camera.position.distanceTo(target) * (1 + e.deltaY * 0.01));
+    };
+
+    let pinchStart = 0;
+    let pinchStartDistance = 0;
+    const fingerGap = (t: TouchList) =>
+      Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 2) {
+        pinchStart = fingerGap(e.touches);
+        pinchStartDistance = camera.position.distanceTo(target);
+      }
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length === 2 && pinchStart > 0) {
+        e.preventDefault();
+        setDistance(pinchStartDistance * (pinchStart / fingerGap(e.touches)));
+      }
+    };
+    const onTouchEnd = () => {
+      pinchStart = 0;
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    el.addEventListener("touchstart", onTouchStart, { passive: false });
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+    el.addEventListener("touchend", onTouchEnd);
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchmove", onTouchMove);
+      el.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [gl, camera]);
+
+  return null;
+}
+
 interface RobotSceneProps {
   progressRef?: RefObject<number>;
   interactive?: boolean;
@@ -237,12 +300,15 @@ export function RobotScene({
           />
         </Suspense>
         {interactive && (
-          <OrbitControls
-            enablePan={false}
-            enableZoom={false}
-            autoRotate={!env.reduced}
-            autoRotateSpeed={0.6}
-          />
+          <>
+            <OrbitControls
+              enablePan={false}
+              enableZoom={false}
+              autoRotate={!env.reduced}
+              autoRotateSpeed={0.6}
+            />
+            <PinchZoom />
+          </>
         )}
       </Canvas>
     </div>

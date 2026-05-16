@@ -1,13 +1,27 @@
 "use client";
 
-/** Closing CTA + footer for the landing page. */
+/** Closing CTA with an email-capture contact box + footer. */
 
+import { useState } from "react";
 import { GsapReveal } from "./GsapReveal";
 import { landing } from "@/config/landing";
 
 export function FinalCTA() {
   const { finalCta, footer, brand } = landing;
   const year = new Date().getFullYear();
+
+  const [email, setEmail] = useState("");
+  const [sent, setSent] = useState(false);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const subject = encodeURIComponent("BraveBot demo request");
+    const body = encodeURIComponent(
+      `Hello Vigiles Robotics team,\n\nI'd like to request a BraveBot demo.\n\nPlease reach me at: ${email}`,
+    );
+    window.location.href = `mailto:${finalCta.contactEmail}?subject=${subject}&body=${body}`;
+    setSent(true);
+  }
 
   return (
     <>
@@ -29,18 +43,59 @@ export function FinalCTA() {
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-tdim sm:text-lg">
             {finalCta.body}
           </p>
-          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href={finalCta.ctaPrimary.href}
-              className="inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 text-sm font-medium text-void transition-opacity hover:opacity-90"
-            >
-              {finalCta.ctaPrimary.label}
-            </a>
+
+          {/* email-capture contact box */}
+          <div className="mx-auto mt-9 w-full max-w-md">
+            {sent ? (
+              <div className="rounded-xl border border-cyan/40 bg-panel p-6">
+                <p className="text-base font-semibold text-foreground">
+                  Thanks — your request is on its way.
+                </p>
+                <p className="mt-1.5 text-sm text-tdim">
+                  Your email app should open addressed to our team. We&apos;ll get
+                  back to you at{" "}
+                  <span className="font-medium text-foreground">{email}</span>.
+                </p>
+              </div>
+            ) : (
+              <form
+                onSubmit={handleSubmit}
+                className="rounded-xl border border-line bg-panel p-4 text-left"
+              >
+                <label
+                  htmlFor="demo-email"
+                  className="block text-sm font-medium text-foreground"
+                >
+                  Your work email
+                </label>
+                <div className="mt-2 flex flex-col gap-2.5 sm:flex-row">
+                  <input
+                    id="demo-email"
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@company.com"
+                    className="w-full flex-1 rounded-lg border border-line bg-void px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-tfaint focus:border-cyan/70"
+                  />
+                  <button
+                    type="submit"
+                    className="rounded-lg bg-foreground px-6 py-3 text-sm font-medium text-void transition-opacity hover:opacity-90"
+                  >
+                    Request a demo
+                  </button>
+                </div>
+                <p className="mt-2 text-xs text-tfaint">
+                  We&apos;ll only use your email to follow up about a demo.
+                </p>
+              </form>
+            )}
+
             <a
               href={finalCta.ctaSecondary.href}
-              className="inline-flex items-center justify-center rounded-lg border border-line px-6 py-3 text-sm font-medium text-foreground transition-colors hover:border-cyan/60"
+              className="mt-4 inline-block text-sm text-tdim transition-colors hover:text-foreground"
             >
-              {finalCta.ctaSecondary.label}
+              {finalCta.ctaSecondary.label} →
             </a>
           </div>
         </GsapReveal>
@@ -55,9 +110,7 @@ export function FinalCTA() {
               </span>
               <span className="text-sm font-semibold tracking-tight">
                 {brand.name}
-                <span className="ml-2 text-xs font-normal text-tfaint">
-                  {brand.org}
-                </span>
+                <span className="ml-2 text-xs font-normal text-tfaint">{brand.org}</span>
               </span>
             </div>
             <p className="mt-4 text-sm text-tdim">{footer.tagline}</p>
