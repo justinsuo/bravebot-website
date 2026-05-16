@@ -22,22 +22,24 @@ export type MatKey =
   | "orange" | "warn" | "sensor" | "lens" | "glass" | "estop"
   | "antenna" | "core" | "screen";
 
+// Monochrome grey palette — every part is a distinct shade of grey;
+// the orange protective rails are the only colour accent.
 export const MATERIALS: Record<MatKey, THREE.MeshStandardMaterialParameters> = {
   shell: { color: "#e7eaf0", metalness: 0.55, roughness: 0.4 },
-  metal: { color: "#9aa4b5", metalness: 0.78, roughness: 0.3 },
+  metal: { color: "#aab3c0", metalness: 0.78, roughness: 0.3 },
   casing: { color: "#c4cad4", metalness: 0.5, roughness: 0.46 },
   frame: { color: "#b1b9c5", metalness: 0.58, roughness: 0.42 },
-  tire: { color: "#101218", metalness: 0.2, roughness: 0.75 },
-  rubber: { color: "#15171d", metalness: 0.08, roughness: 0.92 },
+  tire: { color: "#3f444d", metalness: 0.2, roughness: 0.75 },
+  rubber: { color: "#565b64", metalness: 0.1, roughness: 0.9 },
   orange: { color: "#ec5a16", metalness: 0.32, roughness: 0.46, emissive: "#5e1f04", emissiveIntensity: 0.32 },
-  warn: { color: "#e6b13e", metalness: 0.3, roughness: 0.5 },
-  sensor: { color: "#243454", metalness: 0.5, roughness: 0.38, emissive: "#3d6dfb", emissiveIntensity: 0.28 },
-  lens: { color: "#080b12", metalness: 0.15, roughness: 0.08 },
-  glass: { color: "#7fa6ff", metalness: 0.1, roughness: 0.05, emissive: "#3d6dfb", emissiveIntensity: 0.5 },
-  estop: { color: "#d8392a", metalness: 0.28, roughness: 0.44, emissive: "#5e120a", emissiveIntensity: 0.45 },
-  antenna: { color: "#2d333f", metalness: 0.62, roughness: 0.38 },
-  core: { color: "#16223f", metalness: 0.5, roughness: 0.38, emissive: "#3d6dfb", emissiveIntensity: 0.5 },
-  screen: { color: "#0a1426", metalness: 0.2, roughness: 0.28, emissive: "#3d6dfb", emissiveIntensity: 0.85 },
+  warn: { color: "#9aa0aa", metalness: 0.3, roughness: 0.5 },
+  sensor: { color: "#6e7480", metalness: 0.5, roughness: 0.4 },
+  lens: { color: "#232830", metalness: 0.15, roughness: 0.1 },
+  glass: { color: "#aeb5c0", metalness: 0.12, roughness: 0.1 },
+  estop: { color: "#868c96", metalness: 0.28, roughness: 0.44 },
+  antenna: { color: "#565c66", metalness: 0.62, roughness: 0.38 },
+  core: { color: "#565c68", metalness: 0.5, roughness: 0.4 },
+  screen: { color: "#3c414b", metalness: 0.2, roughness: 0.3 },
 };
 
 export function partMaterial(mat: MatKey, hot: boolean): THREE.MeshStandardMaterialParameters {
