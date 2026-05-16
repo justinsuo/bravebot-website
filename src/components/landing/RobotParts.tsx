@@ -25,7 +25,7 @@ export type MatKey =
 // Fully monochrome grey palette — every part is a distinct shade of grey.
 export const MATERIALS: Record<MatKey, THREE.MeshStandardMaterialParameters> = {
   shell: { color: "#e7eaf0", metalness: 0.55, roughness: 0.4 },
-  metal: { color: "#aab3c0", metalness: 0.78, roughness: 0.3 },
+  metal: { color: "#bdc4ce", metalness: 0.78, roughness: 0.3 },
   casing: { color: "#c4cad4", metalness: 0.5, roughness: 0.46 },
   frame: { color: "#b1b9c5", metalness: 0.58, roughness: 0.42 },
   tire: { color: "#3f444d", metalness: 0.2, roughness: 0.75 },
