@@ -44,22 +44,22 @@ const band = (x: number, a: number, b: number, c: number, d: number) =>
 function HeroCopy() {
   return (
     <>
-      <h1 className="text-balance text-4xl leading-[1.06] sm:text-6xl md:text-7xl">
+      <h1 className="mx-auto max-w-xl text-balance text-2xl font-semibold leading-[1.18] sm:text-3xl md:text-[2.35rem]">
         {landing.hero.headline}
       </h1>
-      <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-tdim sm:text-lg">
+      <p className="mx-auto mt-3.5 max-w-sm text-sm leading-relaxed text-tdim sm:text-base">
         {landing.hero.subheadline}
       </p>
-      <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      <div className="mt-6 flex flex-col items-center justify-center gap-2.5 sm:flex-row">
         <a
           href={landing.hero.ctaPrimary.href}
-          className="inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 text-sm font-medium text-void transition-opacity hover:opacity-90"
+          className="inline-flex items-center justify-center rounded-lg bg-foreground px-5 py-2.5 text-sm font-medium text-void transition-opacity hover:opacity-90"
         >
           {landing.hero.ctaPrimary.label}
         </a>
         <a
           href={landing.hero.ctaSecondary.href}
-          className="inline-flex items-center justify-center rounded-lg border border-line bg-panel-2/60 px-6 py-3 text-sm font-medium text-foreground backdrop-blur transition-colors hover:border-cyan/60"
+          className="inline-flex items-center justify-center rounded-lg border border-line bg-panel-2/60 px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition-colors hover:border-cyan/60"
         >
           {landing.hero.ctaSecondary.label}
         </a>

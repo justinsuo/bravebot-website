@@ -70,43 +70,50 @@ export function RobotExplorer() {
           </div>
 
           {/* selected detail + hotspot list */}
-          <div className="flex flex-col">
-            <div className="rounded-xl border border-cyan/40 bg-panel p-5">
-              <div className="flex items-center gap-2 text-cyan-bright">
-                <span className="grid h-6 w-6 place-items-center rounded-full bg-cyan/15 text-xs font-semibold">
-                  {current.n}
+          <div className="flex flex-col gap-4">
+            {/* detail card */}
+            <article className="rounded-xl border border-cyan/35 bg-panel p-5">
+              <div className="flex items-center justify-between">
+                <span className="flex items-center gap-2">
+                  <span className="grid h-7 w-7 place-items-center rounded-md bg-cyan/15 text-sm font-semibold text-cyan-bright">
+                    {current.n}
+                  </span>
+                  <span className="text-xs uppercase tracking-[0.14em] text-tfaint">
+                    Selected component
+                  </span>
                 </span>
-                <span className="text-sm font-semibold">Selected component</span>
+                <span className="text-xs text-tfaint">{current.n} / {hotspots.length}</span>
               </div>
-              <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
+              <h3 className="mt-3 text-lg font-semibold tracking-tight text-foreground">
                 {current.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-tdim">{current.body}</p>
-            </div>
+              <p className="mt-1.5 text-sm leading-relaxed text-tdim">{current.body}</p>
+            </article>
 
-            <ul className="mt-4 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+            {/* hotspot list */}
+            <ul className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
               {hotspots.map((h) => {
                 const active = h.id === selectedId;
                 return (
-                  <li key={h.id}>
+                  <li key={h.id} className="flex">
                     <button
                       type="button"
                       onClick={() => setSelectedId(h.id)}
                       aria-pressed={active}
-                      className={`flex w-full items-center gap-2.5 rounded-lg border px-3 py-2 text-left text-sm transition-colors ${
+                      className={`flex w-full items-center gap-2.5 rounded-lg border px-2.5 py-2 text-left text-[0.82rem] leading-tight transition-colors ${
                         active
-                          ? "border-cyan/50 bg-cyan/10 text-foreground"
-                          : "border-line bg-void text-tdim hover:border-cyan/30 hover:text-foreground"
+                          ? "border-cyan/55 bg-cyan/10 text-foreground"
+                          : "border-line bg-void text-tdim hover:border-cyan/30 hover:bg-panel hover:text-foreground"
                       }`}
                     >
                       <span
-                        className={`grid h-5 w-5 shrink-0 place-items-center rounded-full text-[0.65rem] font-semibold ${
+                        className={`grid h-5 w-5 shrink-0 place-items-center rounded text-[0.62rem] font-semibold tabular-nums ${
                           active ? "bg-cyan text-void" : "bg-panel-2 text-tfaint"
                         }`}
                       >
                         {h.n}
                       </span>
-                      {h.title}
+                      <span className="flex-1">{h.title}</span>
                     </button>
                   </li>
                 );
