@@ -50,18 +50,21 @@ export function LandingNav() {
         </div>
 
         <div className="ml-auto flex items-center gap-2.5 md:ml-0">
-          <a
-            href={landing.nav.explore.href}
-            className="hidden rounded-lg border border-line px-3.5 py-2 text-sm text-tdim transition-colors hover:border-cyan/50 hover:text-foreground sm:inline-block"
-          >
-            {landing.nav.explore.label}
-          </a>
-          <a
-            href={landing.nav.cta.href}
-            className="rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-void transition-opacity hover:opacity-90"
-          >
-            {landing.nav.cta.label}
-          </a>
+          {/* the two right-side actions, combined into one segmented control */}
+          <div className="hidden items-center rounded-lg border border-line p-1 sm:flex">
+            <a
+              href={landing.nav.explore.href}
+              className="rounded-md px-3 py-1.5 text-sm text-tdim transition-colors hover:text-foreground"
+            >
+              {landing.nav.explore.label}
+            </a>
+            <a
+              href={landing.nav.cta.href}
+              className="rounded-md bg-foreground px-3.5 py-1.5 text-sm font-medium text-void transition-opacity hover:opacity-90"
+            >
+              {landing.nav.cta.label}
+            </a>
+          </div>
           <button
             className="grid h-9 w-9 place-items-center rounded-md border border-line md:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -92,6 +95,13 @@ export function LandingNav() {
               className="rounded-md px-3 py-2 text-sm text-tdim transition-colors hover:bg-panel-2 hover:text-foreground"
             >
               {landing.nav.explore.label}
+            </a>
+            <a
+              href={landing.nav.cta.href}
+              onClick={() => setOpen(false)}
+              className="mt-1 rounded-md bg-foreground px-3 py-2 text-center text-sm font-medium text-void"
+            >
+              {landing.nav.cta.label}
             </a>
           </div>
         </div>

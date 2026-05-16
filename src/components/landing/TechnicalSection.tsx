@@ -26,28 +26,21 @@ export function TechnicalSection() {
 
         <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-14">
           {/* pipeline */}
-          <div className="relative">
-            {/* connecting spine */}
-            <div
-              aria-hidden="true"
-              className="absolute left-[15px] top-2 bottom-2 w-px bg-gradient-to-b from-cyan/60 via-line to-transparent"
-            />
-            <ol className="space-y-3">
-              {pipeline.map((p, i) => (
-                <GsapReveal key={p.step} delay={i * 0.08} y={28}>
-                  <li className="relative flex items-start gap-4 rounded-xl border border-line bg-panel/60 p-4">
-                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-cyan/40 bg-void text-sm font-semibold text-cyan-bright">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <div className="font-semibold text-foreground">{p.step}</div>
-                      <div className="mt-0.5 text-sm text-tdim">{p.detail}</div>
-                    </div>
-                  </li>
-                </GsapReveal>
-              ))}
-            </ol>
-          </div>
+          <ol className="space-y-2.5">
+            {pipeline.map((p, i) => (
+              <GsapReveal key={p.step} delay={i * 0.07} y={22}>
+                <li className="flex items-center gap-4 rounded-xl border border-line bg-panel/70 p-4 transition-colors hover:border-cyan/40">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-cyan/12 text-sm font-semibold text-cyan-bright">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <div className="font-semibold text-foreground">{p.step}</div>
+                    <div className="mt-0.5 text-sm text-tdim">{p.detail}</div>
+                  </div>
+                </li>
+              </GsapReveal>
+            ))}
+          </ol>
 
           {/* code block */}
           <GsapReveal y={36}>
