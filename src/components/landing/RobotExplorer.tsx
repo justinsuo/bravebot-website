@@ -72,26 +72,18 @@ export function RobotExplorer() {
           {/* selected detail + hotspot list */}
           <div className="flex flex-col gap-4">
             {/* detail card */}
-            <article className="rounded-xl border border-cyan/35 bg-panel p-5">
-              <div className="flex items-center justify-between">
-                <span className="flex items-center gap-2">
-                  <span className="grid h-7 w-7 place-items-center rounded-md bg-cyan/15 text-sm font-semibold text-cyan-bright">
-                    {current.n}
-                  </span>
-                  <span className="text-xs uppercase tracking-[0.14em] text-tfaint">
-                    Selected component
-                  </span>
-                </span>
-                <span className="text-xs text-tfaint">{current.n} / {hotspots.length}</span>
-              </div>
-              <h3 className="mt-3 text-lg font-semibold tracking-tight text-foreground">
+            <article className="rounded-xl border border-line bg-panel p-5">
+              <span className="text-xs uppercase tracking-[0.14em] text-tfaint">
+                Selected component
+              </span>
+              <h3 className="mt-2 text-lg font-semibold tracking-tight text-foreground">
                 {current.title}
               </h3>
               <p className="mt-1.5 text-sm leading-relaxed text-tdim">{current.body}</p>
             </article>
 
-            {/* hotspot list */}
-            <ul className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+            {/* hotspot list — one seamless divided panel */}
+            <ul className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
               {hotspots.map((h) => {
                 const active = h.id === selectedId;
                 return (
@@ -100,20 +92,13 @@ export function RobotExplorer() {
                       type="button"
                       onClick={() => setSelectedId(h.id)}
                       aria-pressed={active}
-                      className={`flex w-full items-center gap-2.5 rounded-lg border px-2.5 py-2 text-left text-[0.82rem] leading-tight transition-colors ${
+                      className={`flex w-full items-center px-4 py-3 text-left text-sm transition-colors ${
                         active
-                          ? "border-cyan/55 bg-cyan/10 text-foreground"
-                          : "border-line bg-void text-tdim hover:border-cyan/30 hover:bg-panel hover:text-foreground"
+                          ? "bg-cyan/10 font-medium text-cyan-bright"
+                          : "bg-void text-tdim hover:bg-panel-2 hover:text-foreground"
                       }`}
                     >
-                      <span
-                        className={`grid h-5 w-5 shrink-0 place-items-center rounded text-[0.62rem] font-semibold tabular-nums ${
-                          active ? "bg-cyan text-void" : "bg-panel-2 text-tfaint"
-                        }`}
-                      >
-                        {h.n}
-                      </span>
-                      <span className="flex-1">{h.title}</span>
+                      {h.title}
                     </button>
                   </li>
                 );
