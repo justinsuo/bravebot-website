@@ -75,7 +75,9 @@ const PARTS: Part[] = [
 ];
 
 const STL_PARTS = PARTS.filter((p) => p.kind === "stl");
-const STL_FILES = STL_PARTS.map((p) => `/models/tron1/${p.file}.stl`);
+// Prefix with the base path so static-export builds (GitHub Pages) resolve.
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const STL_FILES = STL_PARTS.map((p) => `${BASE_PATH}/models/tron1/${p.file}.stl`);
 
 const INTERACTIVE_EXPLODE = 0.5;
 const easeInOut = (t: number) =>
@@ -204,7 +206,6 @@ export function RobotScene({
     dpr: [1, 1.8],
     reduced: false,
   });
-  const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const mobile = window.innerWidth < 768;
@@ -214,24 +215,8 @@ export function RobotScene({
     });
   }, []);
 
-  // Interactive viewer: a plain wheel/trackpad scroll should move the PAGE,
-  // not zoom. Intercept it in the capture phase before OrbitControls sees it;
-  // only pinch gestures (touch, or trackpad pinch which fires wheel+ctrlKey)
-  // are allowed through to zoom.
-  useEffect(() => {
-    if (!interactive) return;
-    const el = wrapRef.current;
-    if (!el) return;
-    const onWheel = (e: WheelEvent) => {
-      if (!e.ctrlKey) e.stopPropagation();
-    };
-    el.addEventListener("wheel", onWheel, { capture: true });
-    return () =>
-      el.removeEventListener("wheel", onWheel, { capture: true } as EventListenerOptions);
-  }, [interactive]);
-
   return (
-    <div ref={wrapRef} className={className} aria-hidden={!interactive}>
+    <div className={className} aria-hidden={!interactive}>
       <Canvas
         camera={{ position: interactive ? [3.4, 1.6, 8.5] : [3.2, 1.4, 9], fov: 42 }}
         dpr={env.dpr}
@@ -254,9 +239,7 @@ export function RobotScene({
         {interactive && (
           <OrbitControls
             enablePan={false}
-            enableZoom
-            minDistance={5}
-            maxDistance={13}
+            enableZoom={false}
             autoRotate={!env.reduced}
             autoRotateSpeed={0.6}
           />

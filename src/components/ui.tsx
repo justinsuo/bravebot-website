@@ -87,7 +87,7 @@ export function Tag({
   };
   return (
     <span
-      className={`inline-flex items-center rounded-full border px-2.5 py-0.5 font-mono text-[0.68rem] uppercase tracking-wider ${tones[tone]}`}
+      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium ${tones[tone]}`}
     >
       {children}
     </span>
