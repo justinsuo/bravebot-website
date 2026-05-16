@@ -19,7 +19,7 @@ export const landing = {
       { label: "Architecture", href: "#technical" },
     ],
     cta: { label: "Request a demo", href: "#contact" },
-    explore: { label: "Explore the platform", href: "/explore" },
+    explore: { label: "Explore the platform", href: "#anatomy" },
   },
 
   /* ---- 1 · hero -------------------------------------------------- */
@@ -28,7 +28,7 @@ export const landing = {
     headline: "Autonomous inspection for data centers and industrial sites.",
     subheadline:
       "BraveBot is a wheel-legged robot with a four-sensor stack and on-board AI — built to patrol facilities, detect developing faults, and produce risk-scored work orders.",
-    ctaPrimary: { label: "Explore the robot", href: "/explore" },
+    ctaPrimary: { label: "Explore the robot", href: "#anatomy" },
     ctaSecondary: { label: "Request a demo", href: "#contact" },
     stats: [
       { value: "48 lb", label: "Chassis weight" },
@@ -201,7 +201,7 @@ export const landing = {
     headline: "Bring autonomous inspection to your facility.",
     body: "See the full platform, or talk to the team about a deployment.",
     ctaPrimary: { label: "Request a demo", href: "#contact" },
-    ctaSecondary: { label: "Explore the platform", href: "/explore" },
+    ctaSecondary: { label: "Explore the platform", href: "#anatomy" },
   },
 
   /* ---- footer ---------------------------------------------------- */
@@ -209,7 +209,7 @@ export const landing = {
     tagline: "Embodied AI for infrastructure inspection.",
     note: "Robot renders are concept visualizations, not product photographs. Technical claims are subject to engineering verification.",
     links: [
-      { label: "Explore the platform", href: "/explore" },
+      { label: "Explore the platform", href: "#anatomy" },
       { label: "Capabilities", href: "#features" },
       { label: "Integrations", href: "#integrations" },
       { label: "Request a demo", href: "#contact" },
