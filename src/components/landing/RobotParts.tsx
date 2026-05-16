@@ -22,8 +22,7 @@ export type MatKey =
   | "orange" | "warn" | "sensor" | "lens" | "glass" | "estop"
   | "antenna" | "core" | "screen";
 
-// Monochrome grey palette — every part is a distinct shade of grey;
-// the orange protective rails are the only colour accent.
+// Fully monochrome grey palette — every part is a distinct shade of grey.
 export const MATERIALS: Record<MatKey, THREE.MeshStandardMaterialParameters> = {
   shell: { color: "#e7eaf0", metalness: 0.55, roughness: 0.4 },
   metal: { color: "#aab3c0", metalness: 0.78, roughness: 0.3 },
@@ -31,7 +30,7 @@ export const MATERIALS: Record<MatKey, THREE.MeshStandardMaterialParameters> = {
   frame: { color: "#b1b9c5", metalness: 0.58, roughness: 0.42 },
   tire: { color: "#3f444d", metalness: 0.2, roughness: 0.75 },
   rubber: { color: "#565b64", metalness: 0.1, roughness: 0.9 },
-  orange: { color: "#ec5a16", metalness: 0.32, roughness: 0.46, emissive: "#5e1f04", emissiveIntensity: 0.32 },
+  orange: { color: "#6a6f79", metalness: 0.4, roughness: 0.45 },
   warn: { color: "#9aa0aa", metalness: 0.3, roughness: 0.5 },
   sensor: { color: "#6e7480", metalness: 0.5, roughness: 0.4 },
   lens: { color: "#232830", metalness: 0.15, roughness: 0.1 },
