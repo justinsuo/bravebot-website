@@ -25,8 +25,8 @@ export type MatKey =
 export const MATERIALS: Record<MatKey, THREE.MeshStandardMaterialParameters> = {
   shell: { color: "#e7eaf0", metalness: 0.55, roughness: 0.4 },
   metal: { color: "#9aa4b5", metalness: 0.78, roughness: 0.3 },
-  casing: { color: "#474f60", metalness: 0.62, roughness: 0.4 },
-  frame: { color: "#6c7686", metalness: 0.7, roughness: 0.36 },
+  casing: { color: "#c4cad4", metalness: 0.5, roughness: 0.46 },
+  frame: { color: "#b1b9c5", metalness: 0.58, roughness: 0.42 },
   tire: { color: "#101218", metalness: 0.2, roughness: 0.75 },
   rubber: { color: "#15171d", metalness: 0.08, roughness: 0.92 },
   orange: { color: "#ec5a16", metalness: 0.32, roughness: 0.46, emissive: "#5e1f04", emissiveIntensity: 0.32 },
