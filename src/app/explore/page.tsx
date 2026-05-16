@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SiteNav } from "@/components/SiteNav";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { Hero } from "@/components/Hero";
-import { RobotAnatomyExplorer } from "@/components/RobotAnatomyExplorer";
+import { RobotExplorer } from "@/components/landing/RobotExplorer";
 import { WheelLeggedExplainer } from "@/components/WheelLeggedExplainer";
 import { SensorFusionConsole } from "@/components/SensorFusionConsole";
 import { ThreatSimulator } from "@/components/ThreatSimulator";
@@ -36,7 +36,7 @@ export default function ExplorePage() {
       <SiteNav />
       <main>
         <Hero />
-        <RobotAnatomyExplorer />
+        <RobotExplorer />
         <Divider />
         <WheelLeggedExplainer />
         <Divider />

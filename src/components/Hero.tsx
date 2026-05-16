@@ -1,10 +1,16 @@
 "use client";
 
 import { useRef } from "react";
+import dynamic from "next/dynamic";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { BraveBotSVG } from "@/components/BraveBotSVG";
 import { CtaButton, StatBlock } from "@/components/ui";
 import { hero } from "@/data/bravebot";
+
+// 3D BraveBot model (assembled, slowly rotating) — replaces the old 2D SVG.
+const RobotScene = dynamic(
+  () => import("@/components/landing/RobotScene").then((m) => m.RobotScene),
+  { ssr: false },
+);
 
 /** Full-screen landing hero — robot in a data center aisle with scroll parallax. */
 export function Hero() {
@@ -176,10 +182,7 @@ export function Hero() {
                 ))}
               </div>
 
-              <BraveBotSVG
-                scanFx
-                className="anim-float relative z-10 w-full drop-shadow-[0_36px_60px_rgba(0,0,0,0.6)]"
-              />
+              <RobotScene className="anim-float relative z-10 h-[420px] w-full" />
 
               {/* concept caption chip */}
               <span className="absolute -bottom-2 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-full border border-line bg-panel/90 px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-tfaint backdrop-blur">

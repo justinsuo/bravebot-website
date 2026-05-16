@@ -84,7 +84,7 @@ export function RobotExplorer() {
               <p className="mt-2 text-sm leading-relaxed text-tdim">{current.body}</p>
             </div>
 
-            <ul className="mt-4 grid max-h-[20rem] grid-cols-1 gap-1.5 overflow-y-auto pr-1 sm:grid-cols-2 lg:grid-cols-1">
+            <ul className="mt-4 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
               {hotspots.map((h) => {
                 const active = h.id === selectedId;
                 return (
