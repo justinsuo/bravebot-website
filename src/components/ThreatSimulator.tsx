@@ -137,11 +137,10 @@ export function ThreatSimulator() {
                       {i < threat.timeline.length - 1 && (
                         <motion.span
                           aria-hidden
-                          className="absolute left-[5px] top-3 w-0.5 bg-cyan/40 md:left-auto md:top-[5px] md:h-0.5 md:w-full"
+                          className="absolute left-[5px] top-3 h-full w-0.5 origin-top-left bg-cyan/40 md:left-auto md:top-[5px] md:h-0.5 md:w-full"
                           initial={{ scaleY: 0, scaleX: 0 }}
                           animate={{ scaleY: 1, scaleX: 1 }}
                           transition={{ duration: 0.3, delay: reduce ? 0 : i * 0.22 + 0.1 }}
-                          style={{ transformOrigin: "top left", height: "100%" }}
                         />
                       )}
                     </div>
