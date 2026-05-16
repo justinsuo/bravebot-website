@@ -38,17 +38,16 @@ export function Eyebrow({ children }: { children: ReactNode }) {
 }
 
 export function SectionHeading({
-  eyebrow,
   title,
   intro,
 }: {
-  eyebrow: string;
+  /** kept for call-site compatibility; the eyebrow label is no longer shown */
+  eyebrow?: string;
   title: ReactNode;
   intro?: ReactNode;
 }) {
   return (
     <header className="mb-12 max-w-3xl">
-      <Eyebrow>{eyebrow}</Eyebrow>
       <h2 className="text-[1.9rem] leading-[1.12] sm:text-4xl md:text-[2.9rem]">
         {title}
       </h2>
