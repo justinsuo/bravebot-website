@@ -6,7 +6,10 @@ autonomous robot — built on a modified LimX Dynamics TRON 1 platform — that
 patrols facilities, fuses acoustic / thermal / gas / visual sensing with an
 on-edge AI brain, and reports developing faults as risk-scored work orders.
 
+**Live site:** https://justinsuo.github.io/bravebot-website/
 **Repository:** https://github.com/justinsuo/bravebot-website
+
+![BraveBot website preview](docs/screenshot.png)
 
 > Robot renders are concept visualizations, not product photographs.
 > Technical claims are subject to engineering verification.
