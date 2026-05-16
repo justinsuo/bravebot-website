@@ -18,8 +18,6 @@ import { EdgeAIBrain } from "@/components/EdgeAIBrain";
 import { DataPipeline } from "@/components/DataPipeline";
 import { UseCaseCards } from "@/components/UseCaseCards";
 import { IndustrialMode } from "@/components/IndustrialMode";
-import { PUECalculator } from "@/components/PUECalculator";
-import { PatrolDashboardMock } from "@/components/PatrolDashboardMock";
 import { SpecsTable } from "@/components/SpecsTable";
 import { VisualGallery } from "@/components/VisualGallery";
 import { ComparisonTable } from "@/components/ComparisonTable";
@@ -68,10 +66,6 @@ export default function HomePage() {
         <UseCaseCards />
         <Divider />
         <IndustrialMode />
-        <Divider />
-        <PUECalculator />
-        <Divider />
-        <PatrolDashboardMock />
         <Divider />
         <SpecsTable />
         <Divider />
