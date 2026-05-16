@@ -19,8 +19,6 @@ import { DataPipeline } from "@/components/DataPipeline";
 import { UseCaseCards } from "@/components/UseCaseCards";
 import { IndustrialMode } from "@/components/IndustrialMode";
 import { SpecsTable } from "@/components/SpecsTable";
-import { VisualGallery } from "@/components/VisualGallery";
-import { ComparisonTable } from "@/components/ComparisonTable";
 
 export const metadata: Metadata = {
   title: "BraveBot — Embodied AI Inspection Robot | Vigiles Robotics",
@@ -68,10 +66,6 @@ export default function HomePage() {
         <IndustrialMode />
         <Divider />
         <SpecsTable />
-        <Divider />
-        <VisualGallery />
-        <Divider />
-        <ComparisonTable />
 
         <FinalCTA />
       </main>
