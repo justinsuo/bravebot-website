@@ -1,19 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Space_Mono } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ModeProvider } from "@/components/ModeContext";
 
-// Site-wide typeface: Space Grotesk (a designed, technical grotesk) for all
-// UI and headings, paired with its sibling Space Mono for technical labels.
-const sans = Space_Grotesk({
+// Site-wide typeface: Inter — a neutral, professional grotesk that matches
+// the clean medical-corporate look; Geist Mono for the few technical labels.
+const sans = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
 });
-const mono = Space_Mono({
+const mono = Geist_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["400", "700"],
   display: "swap",
 });
 
