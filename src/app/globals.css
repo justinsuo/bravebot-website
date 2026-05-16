@@ -1,37 +1,37 @@
 @import "tailwindcss";
 
 /* ============================================================
-   BraveBot / Vigiles Robotics — minimal dark design system
-   Near-black surfaces, crisp white type, a single electric-blue
-   accent, flat outlined cards. Restrained and institutional.
+   BraveBot / Vigiles Robotics — light theme (preview)
+   Light surfaces, ink typography, a single electric-blue accent,
+   flat outlined cards with soft elevation.
    ============================================================ */
 :root {
-  --background: #0a0a0c;
-  --foreground: #f3f3f5;
+  --background: #f4f5f8;
+  --foreground: #15181f;
 
-  /* Surfaces — near-black, lightly layered */
-  --void: #0a0a0c;
-  --abyss: #060608;
-  --panel: #131317;
-  --panel-2: #1a1a1f;
-  --line: #2a2a32;
-  --line-soft: #1d1d22;
+  /* Surfaces — light, lightly layered */
+  --void: #f4f5f8;
+  --abyss: #eaecf1;
+  --panel: #ffffff;
+  --panel-2: #f6f7fa;
+  --line: #dde0e8;
+  --line-soft: #e9ebf0;
 
   /* Single electric-blue accent (cyan/orange tokens both map here) */
   --cyan: #3d6dfb;
-  --cyan-bright: #829dff;
+  --cyan-bright: #2c54cf;
   --blue: #3d6dfb;
   --blue-deep: #1e2b6e;
   --orange: #3d6dfb;
-  --orange-bright: #829dff;
+  --orange-bright: #2c54cf;
 
-  --text: #f3f3f5;
-  --text-dim: #9a9aa6;
-  --text-faint: #5f5f6b;
+  --text: #15181f;
+  --text-dim: #586172;
+  --text-faint: #7e8696;
 
-  --ok: #3ecf8e;
-  --warn: #e6b13e;
-  --crit: #f0573f;
+  --ok: #1a8a4b;
+  --warn: #b06a08;
+  --crit: #cf3b2c;
 }
 
 @theme inline {
@@ -92,35 +92,38 @@ h2 {
   line-height: 1.1;
 }
 
-/* Faint structural grid — barely there */
+/* Faint structural grid */
 .bg-techgrid {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.016) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.016) 1px, transparent 1px);
+    linear-gradient(rgba(20, 30, 60, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 30, 60, 0.045) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
-/* Accent ring (no neon glow — restrained) */
+/* Accent ring + soft elevation */
 .glow-cyan {
   box-shadow:
-    0 0 0 1px rgba(61, 109, 251, 0.45),
-    0 12px 34px -18px rgba(61, 109, 251, 0.55);
+    0 0 0 1px rgba(61, 109, 251, 0.3),
+    0 14px 32px -18px rgba(61, 109, 251, 0.45);
 }
 .glow-orange {
   box-shadow:
-    0 0 0 1px rgba(61, 109, 251, 0.45),
-    0 12px 34px -18px rgba(61, 109, 251, 0.55);
+    0 0 0 1px rgba(61, 109, 251, 0.3),
+    0 14px 32px -18px rgba(61, 109, 251, 0.45);
 }
 
 /* Flat outlined card */
 .glass {
-  background: rgba(255, 255, 255, 0.022);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(8px);
   border: 1px solid var(--line);
+  box-shadow:
+    0 1px 2px rgba(20, 24, 34, 0.04),
+    0 16px 36px -24px rgba(20, 24, 34, 0.18);
 }
 
 .text-gradient {
-  background: linear-gradient(110deg, #ffffff 30%, #a9bcff 100%);
+  background: linear-gradient(110deg, #15181f 28%, #3d6dfb 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -133,7 +136,7 @@ h2 {
 /* Scrollbar */
 ::-webkit-scrollbar { width: 11px; height: 11px; }
 ::-webkit-scrollbar-track { background: var(--abyss); }
-::-webkit-scrollbar-thumb { background: #2f2f38; border-radius: 8px; border: 2px solid var(--abyss); }
+::-webkit-scrollbar-thumb { background: #c4c9d3; border-radius: 8px; border: 2px solid var(--abyss); }
 ::-webkit-scrollbar-thumb:hover { background: var(--blue); }
 
 /* Focus visibility */

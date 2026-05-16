@@ -24,12 +24,9 @@ export function LandingNav() {
     >
       <nav className="mx-auto flex h-16 w-full max-w-7xl items-center gap-6 px-5 sm:px-8">
         <a href="#top" className="flex items-center gap-2.5" aria-label={`${landing.brand.name} home`}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/logo.png"
-            alt="Vigiles Robotics"
-            className="h-10 w-auto object-contain"
-          />
+          <span className="grid h-8 w-8 place-items-center rounded-md border border-cyan/40 bg-cyan/10">
+            <span className="block h-3 w-3 rotate-45 border-2 border-cyan-bright" />
+          </span>
           <span className="text-sm font-semibold tracking-tight">
             {landing.brand.name}
           </span>
